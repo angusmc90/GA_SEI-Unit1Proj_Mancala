@@ -57,7 +57,7 @@ function init() {
 
      //prep playerMove with correct data types
      playerMove = {
-        thisTurn : 'not started',
+        playerThisTurn : 'not started',
         lastTurn : { // added thisTurn and lastTurn based on gut. Maybe there is a better way to do this or maybe something that is too much for an MVP at all
             who: 'not started',
             selectedtWell : 'not started',
@@ -108,14 +108,13 @@ function render() {
 }
 
 //>>>>>>COIN FLIP FUNCTION
-// function that randomly selects who starts the game
-function coinFlip() {
+function coinFlip() {// function that randomly selects who goes first & makes gameplay active
     //Randomly assign a player to go first
     let flipNum = Math.ceil(Math.random()*10) % 2;
     let coinSide = flipNum === 0 ? 'heads' : 'tails';
     console.log(coinSide)
-    playerMove.thisTurn = coinSide === 'heads' ? 'playerB' : 'playerA';
-    console.log(playerMove.thisTurn);
+    playerMove.playerThisTurn = coinSide === 'heads' ? 'playerB' : 'playerA';
+    console.log(playerMove.playerThisTurn);
 
     //call updateStatus function
     updateStatus('active');
@@ -130,25 +129,38 @@ function updateStatus(e) {
 }
 
 //>>>>>>TAKE TURN FUNCTION (move pieces function?)
-// move the pieces IN THE WELL THE USER SELECTED 
-// starting with the very next well & going counter clock-wise ADD ONE PIECE TO THE WELL 
-// for each piece IN THAT PLAYERS HAND
-
 function takeTurn(e) {
+    //construct an object to track of current player's hand
+    let thisHand = playerMove.lastTurn;
+    thisHand.who = playerMove.playerThisTurn;
     //if this is the first move, continue onto the rest of the function, if this is the 2nd move or later, add lastTurn to turnTracker array
+    //add exisitng values 
     let gameLog = playerMove.turnTracker;
     if (gameLog.length !== 0) { 
         gameLog.push(playerMove.lastTurn)
     };
 
+    // move the pieces IN THE WELL THE USER SELECTED 
     //get id of btn clicked & use to find the well ID selected
     let btnID = e.target.id;
     let wellSelected = 'well'+btnID.slice(3);
+    //update thisHand
+    thisHand.selectedWell = wellSelected;
+    thisHand.numPieces = gameBoard[wellSelected].pieces;
+    //empty the well
+    gameBoard[wellSelected].pieces = 0;
+    //find the starting well -note- wellSelected + 1
+    //loop through the rest of the wells, add one to each until the pieces in the hand are empty, skipping stores that are not the player's -note- use a i-- where if the number is less than 0, it starts at well 13
 
-    //remove the pieces from that well
-    gameBoard[wellSelected].pieces 
+
+    console.log('---testing thisTurn function------')
+    console.log(hand)
+    console.log(playerMove)
 }
 
+
+//>>>>>>COMPUTER TURN FUNCTION
+//need a function that will take the turn on behalf of the computer
 
 /*
 ============================================

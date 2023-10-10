@@ -1,7 +1,5 @@
 /*
-
 STATES ==================
-
 */
 
 let gameStatus; // "gameplay state" to camputure who's turn & status
@@ -10,28 +8,24 @@ let playerMove; // object that tracks who's turn it is, it was, the well selecte
 
 
 /*
-
 EVENT LISTENERS & DOM ELEMENTS==================
-
 */
-const flip = document.querySelector('.restartGame');
-const pieceCountEls = document.querySelectorAll('.seedCount');
+
+const flip = document.querySelector('.restartGame'); //find the flip coin button / game start button
+const pieceCountEls = document.querySelectorAll('.seedCount'); //find the el where the piece counter will be
+const wellSelectors = document.querySelectorAll('.playBtn');//find the play buttons
 
 // need to know when the user clicks buttons, specifically for:
 // BTN 1 - START GAME - use a class for this one? so same buttons can be used for re-running init & then in future versions with a "forfiet" button, that can be the ID so it runs an game-over screen with scores first?
 flip.addEventListener('click', coinFlip);
 
-
-
-// BTN 2ish - WELL SELECTION - when the user selects which well they want to play
-
-
-
+// BTN 2ish - WELL SELECTION - when the user selects which well they want to play, take the turn
+wellSelectors.forEach((e) => {
+    addEventListener('click', takeTurn);
+});
 
 /*
-
 CONTROLLERS ==================
-
 */
 
 init();
@@ -40,7 +34,7 @@ init();
 function init() {
     //set gameStatus
     gameStatus = 'not started';
-    console.log(gameStatus);
+    console.log('init_GAME STATUS ' + gameStatus);
 
     //reset the game board to starting state
     gameBoard = {
@@ -59,7 +53,7 @@ function init() {
         well12 : {owner: "playerB", type: "well", pieces: 4,},
         well13 : {owner: "playerB", type: "well", pieces: 4,},
      };
-     console.log(gameBoard);
+     console.log('init_GAME BOARD '+ gameBoard);
 
      //prep playerMove with correct data types
      playerMove = {
@@ -72,7 +66,7 @@ function init() {
         }, 
         turnTracker : [],
      };
-     console.log(playerMove);
+     console.log('init_PLAYERMOVE '+ playerMove);
 
      render();
 }
@@ -97,6 +91,7 @@ function render() {
     })
 
 // COME BACK TO THIS ON SETTING GAME OVER WHEN DONE WITH OTHER SECTIONS
+//CONVERT pieceEls TO NUMBERS and add for sum?
     // //update gameStatus - not started / active / game over
     // //grab the number of pieces still in play
     // let inPlayCount = 48;
@@ -107,9 +102,9 @@ function render() {
     // inPlayCount = 0 ? updateStatus('game over') : 
     
     //Section for testing the changes to state via console
-    console.log(gameBoard);
-    console.log(playerMove);
-    console.log(gameStatus);
+    console.log('rend_GAME BOARD '+ gameBoard);
+    console.log('rend_PLAYERMOVE '+ playerMove);
+    console.log('rend_GAME STATUS ' + gameStatus);
 }
 
 //>>>>>>COIN FLIP FUNCTION
@@ -126,31 +121,30 @@ function coinFlip() {
     render();
 }
 
-
-
 //>>>>>>UPDATE GAME STATUS FUNCTION (move pieces function?)
 function updateStatus(e) {
     return e === 'active' ? gameStatus = 'active' : gameStatus = 'game over';
 }
-
-
-
-
 
 //>>>>>>TAKE TURN FUNCTION (move pieces function?)
 // move the pieces IN THE WELL THE USER SELECTED 
 // starting with the very next well & going counter clock-wise ADD ONE PIECE TO THE WELL 
 // for each piece IN THAT PLAYERS HAND
 
-
-
-
+function takeTurn() {
+    //get id of btn clicked for the appropriate well
+    let btnID = e.getAttribute('id');
+    let wellSelected = 'well'+btnID.slice(3);
+    console.log(wellSelected)
+}
 
 
 /*
-%%%%% BUG HELP %%%%%
+============================================
+peronsonal notes section
+============================================
 
-coinFlip - keeps assigning player A?
+== coinFlip - keeps assigning player A?
 
 
 */

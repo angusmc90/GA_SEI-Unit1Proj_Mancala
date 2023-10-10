@@ -131,9 +131,9 @@ function updateStatus(e) {
 // starting with the very next well & going counter clock-wise ADD ONE PIECE TO THE WELL 
 // for each piece IN THAT PLAYERS HAND
 
-function takeTurn() {
+function takeTurn(e) {
     //get id of btn clicked for the appropriate well
-    let btnID = e.getAttribute('id');
+    let btnID = e.this.getAttribute('id');
     let wellSelected = 'well'+btnID.slice(3);
     console.log(wellSelected)
 }

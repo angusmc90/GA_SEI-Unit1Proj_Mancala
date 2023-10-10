@@ -96,13 +96,15 @@ function render() {
         e.innerText = gameBoard[wellNum].pieces;
     })
 
-
-    //update gameStatus - not started / active / game over
-    //grab the number of pieces still in play
-    let inPlayCount = 1;
-    // use if sum of pieces in wells = 0, call gameOver function
-    // else carry on your way
-    inPlayCount > 0 ? updateStatus('Active') : updateStatus('Game Over')
+// COME BACK TO THIS ON SETTING GAME OVER WHEN DONE WITH OTHER SECTIONS
+    // //update gameStatus - not started / active / game over
+    // //grab the number of pieces still in play
+    // let inPlayCount = 48;
+    // gameBoard.forEach((e) => {
+    //     let wellType = e.
+    // })
+    // // use if sum of pieces in wells = 0, updateStatus to game over
+    // inPlayCount = 0 ? updateStatus('game over') : 
     
     //Section for testing the changes to state via console
     console.log(gameBoard);
@@ -118,7 +120,7 @@ function coinFlip() {
     random % 2 == 0 ? playerMove.thisTurn = 'playerB' : playerMove.thisTurn = 'playerA';
 
     //call updateStatus function
-    updateStatus('Active');
+    updateStatus('active');
 
     //render gameboard
     render();
@@ -128,7 +130,7 @@ function coinFlip() {
 
 //>>>>>>UPDATE GAME STATUS FUNCTION (move pieces function?)
 function updateStatus(e) {
-    return e === 'Active' ? gameStatus = 'Active' : gameStatus = 'Game Over';
+    return e === 'active' ? gameStatus = 'active' : gameStatus = 'game over';
 }
 
 

@@ -13,7 +13,7 @@ EVENT LISTENERS & DOM ELEMENTS==================
 
 const flip = document.querySelector('.restartGame'); //find the flip coin button / game start button
 const pieceCountEls = document.querySelectorAll('.seedCount'); //find the el where the piece counter will be
-const wellSelectors = document.querySelectorAll('td:scope > .playBtn');//find the play buttons
+const wellSelectors = document.querySelectorAll('.playBtn');//find the play buttons
 
 // need to know when the user clicks buttons, specifically for:
 // BTN 1 - START GAME - use a class for this one? so same buttons can be used for re-running init & then in future versions with a "forfiet" button, that can be the ID so it runs an game-over screen with scores first?
@@ -144,6 +144,10 @@ function takeTurn(e) {
     //get id of btn clicked & use to find the well ID selected
     let btnID = e.target.id;
     let wellSelected = 'well'+btnID.slice(3);
+    console.log(wellSelected);
+
+
+/*
     //update thisHand
     thisHand.selectedWell = wellSelected;
     thisHand.numPieces = gameBoard[wellSelected].pieces;
@@ -151,10 +155,10 @@ function takeTurn(e) {
     gameBoard[wellSelected].pieces = 0;
     //find the starting well -note- wellSelected + 1
     //loop through the rest of the wells, add one to each until the pieces in the hand are empty, skipping stores that are not the player's -note- use a i-- where if the number is less than 0, it starts at well 13
-
+*/
 
     console.log('---testing thisTurn function------')
-    console.log(hand)
+    console.log(thisHand)
     console.log(playerMove)
 }
 

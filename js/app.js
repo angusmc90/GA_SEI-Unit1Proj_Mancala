@@ -13,7 +13,7 @@ EVENT LISTENERS & DOM ELEMENTS==================
 
 const flip = document.querySelector('.restartGame'); //find the flip coin button / game start button
 const pieceCountEls = document.querySelectorAll('.seedCount'); //find the el where the piece counter will be
-const wellSelectors = document.querySelectorAll('.playBtn');//find the play buttons
+const wellSelectors = document.querySelectorAll('td:scope > .playBtn');//find the play buttons
 
 // need to know when the user clicks buttons, specifically for:
 // BTN 1 - START GAME - use a class for this one? so same buttons can be used for re-running init & then in future versions with a "forfiet" button, that can be the ID so it runs an game-over screen with scores first?
@@ -111,8 +111,11 @@ function render() {
 // function that randomly selects who starts the game
 function coinFlip() {
     //Randomly assign a player to go first
-    let random = Math.ceil(Math.random *2);
-    random % 2 == 0 ? playerMove.thisTurn = 'playerB' : playerMove.thisTurn = 'playerA';
+    let flipNum = Math.ceil(Math.random()*10) % 2;
+    let coinSide = flipNum === 0 ? 'heads' : 'tails';
+    console.log(coinSide)
+    playerMove.thisTurn = coinSide === 'heads' ? 'playerB' : 'playerA';
+    console.log(playerMove.thisTurn);
 
     //call updateStatus function
     updateStatus('active');
@@ -132,10 +135,18 @@ function updateStatus(e) {
 // for each piece IN THAT PLAYERS HAND
 
 function takeTurn(e) {
-    //get id of btn clicked for the appropriate well
-    let btnID = e.this.getAttribute('id');
+    //if this is the first move, continue onto the rest of the function, if this is the 2nd move or later, add lastTurn to turnTracker array
+    let gameLog = playerMove.turnTracker;
+    if (gameLog.length !== 0) { 
+        gameLog.push(playerMove.lastTurn)
+    };
+
+    //get id of btn clicked & use to find the well ID selected
+    let btnID = e.target.id;
     let wellSelected = 'well'+btnID.slice(3);
-    console.log(wellSelected)
+
+    //remove the pieces from that well
+    gameBoard[wellSelected].pieces 
 }
 
 
@@ -144,7 +155,7 @@ function takeTurn(e) {
 peronsonal notes section
 ============================================
 
-== coinFlip - keeps assigning player A?
+== takeTurn - first conditional not accepting break?
 
 
 */

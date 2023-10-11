@@ -114,6 +114,27 @@ function updateStatus(e) {
     return e === 'active' ? gameStatus = 'active' : gameStatus = 'game over';
 }
 
+function checkStatus(e) {
+    //build a playerA & playerB wells
+    const playerAWells = 0;
+    const playerBWells = 0;
+    //count pieces in each row
+    for (let i =0, i <= 13, i++) {
+        let wellID = 'well'+i;
+        let wellDeets = gameBoard[wellID]
+        if (wellDeets.type == 'well' && wellDeets.owner == 'playerA'){
+            playerAWells += wellDeets.pieces
+        } else if (wellDeets.type == 'well' && wellDeets.owner == 'playerB'){
+            playerBWells += wellDeets.pieces
+        }
+    }
+    //if sum of either = 0, set gameStatus to game over
+    //either, set to active
+    gameStatus = playerAWells === 0 || playerBWells === 0 ? 'game over' : 'active';
+
+    //CALL GAME OVER FN TO RENDER GAME OVER MSG IN DOM
+}
+
 //>>>>>>TAKE TURN FUNCTION (move pieces function?)
 function takeTurn(e) {
     //create a thisHand object to represent the actions taken this turn,
@@ -180,6 +201,13 @@ function takeTurn(e) {
 
 
 /*
+
+TODO - 
+
+gameover function
+update status is wierd?
+change player turn
+make the computer turn happen - include SOMEE user interface so it doesn't just happen in a flash - ideally one for "its player b's turn" and a pop-up of their selection
 
 ============================================
 peronsonal notes section

@@ -77,10 +77,7 @@ function render() {
     // if the game is over, add a "game over" msg to last well, end the function here
 
 
-    //return lastTurn.who === 'not started' ? break : playerMove.thisTurn = lastTurn.Who;
-    //update playerMove obj
-    // if the game hasn't started, just don't update turn tracker,
-    // ekse if it has updateed, push the last move into the turn tracker array, and updatedgameStatus === 'not started' ? 
+    //if the game has started, then 
 
 
     //update board counters
@@ -154,8 +151,9 @@ function takeTurn(e) {
     let wellSelected = gameBoard[wellNumStr];
     thisHand.selectedWell = wellNumStr;
     thisHand.numPieces = wellSelected.pieces;
-    piecesInTurn = thisHand.numPieces;
+    playerMove.lastTurn.numPieces = wellSelected.pieces;
     //console.log(thisHand.numPieces);
+
     //empty the well
     gameBoard[wellNumStr].pieces = 0;
 
@@ -181,9 +179,7 @@ function takeTurn(e) {
 
         // move onto next well, unless you are on well 0, in which case, set wellIDNum to 13 and contiue with loop
         wellIDNum = wellIDNum === 0 ? 13 : wellIDNum-1;
-
     };
-
 
     console.log('---testing thisTurn function------')
     console.log(thisHand)

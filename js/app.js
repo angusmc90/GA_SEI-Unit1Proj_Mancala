@@ -154,6 +154,7 @@ function takeTurn(e) {
     let wellSelected = gameBoard[wellNumStr];
     thisHand.selectedWell = wellNumStr;
     thisHand.numPieces = wellSelected.pieces;
+    piecesInTurn = thisHand.numPieces;
     //console.log(thisHand.numPieces);
     //empty the well
     gameBoard[wellNumStr].pieces = 0;
@@ -173,9 +174,14 @@ function takeTurn(e) {
             thisHand.numPieces -= 1;
         };
         
+        //if this is the last piece, add to lastTurn subObject to turn tracker & v2 addition of capture functionality
+        if (thisHand.numPieces === 0) {
+            playerMove.lastTurn.lastWell = thisWell;
+        };
+
         // move onto next well, unless you are on well 0, in which case, set wellIDNum to 13 and contiue with loop
         wellIDNum = wellIDNum === 0 ? 13 : wellIDNum-1;
-        console.log()
+
     };
 
 
@@ -190,7 +196,20 @@ function takeTurn(e) {
 //>>>>>>COMPUTER TURN FUNCTION
 //need a function that will take the turn on behalf of the computer
 
+
+
+
+
+// FOR BUILD TESTING - NOT GOING IN FINAL PRODUCT
+// renderWellChange Function
+function renderWellChange(e){
+    console.log('x')
+}
+
+
+
 /*
+
 ============================================
 peronsonal notes section
 ============================================

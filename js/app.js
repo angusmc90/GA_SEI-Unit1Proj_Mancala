@@ -79,18 +79,20 @@ function render() {
         console.log('this ran')
     }
 
-    // if the game is over, add a "game over" msg to last well, end the function here
-    //CALL GAME OVER FN TO RENDER GAME OVER MSG IN DOM
-
-
-    //when do I want to change the player? should this be a diff fn?
-
-
     //update board counters
     pieceCountEls.forEach((e) => {
         let wellNum = e.parentElement.getAttribute('id');
         e.innerText = gameBoard[wellNum].pieces;
     })
+
+    // if the game is over, add a "game over" msg to last well, end the function here
+    //CALL GAME OVER FN TO RENDER GAME OVER MSG IN DOM
+    if (gameStatus === 'gameOver') {
+        gameOver()
+    }
+
+    //when do I want to change the player? should this be a diff fn?
+    changePlayer();
     
     //Section for testing the changes to state via console
     console.log('rend_GAME BOARD---');
@@ -197,17 +199,30 @@ function takeTurn(e) {
 }
 
 
+//>>>>>>CHANGE PLAYER FUNCTION
+//function to switch to the next player's turn and select from a different row of wells
+function changePlayer(){
+    console.log('this is the changePlayer fn')
+}
+
 //>>>>>>COMPUTER TURN FUNCTION
 //need a function that will take the turn on behalf of the computer
+function compTurn(){
+    'this is the compTurn fn'
+}
 
 
+//>>>>>>GAME OVER FUNCTION
+//function to stop gameplay and render gameOver messaging in dom
+function gameOver(){
+    console.log('this is the gameOver fn')
+}
 
 /*
 
 TODO - 
 
 gameover function
-update status is wierd?
 change player turn
 make the computer turn happen - include SOMEE user interface so it doesn't just happen in a flash - ideally one for "its player b's turn" and a pop-up of their selection
 

@@ -170,7 +170,7 @@ function takeTurn(e) {
         let thisWellOwner = gameBoard[thisWell].owner;
         console.log(thisWellOwner)
         // if that well is one the player can put a piece in aka is not the opp store, then add one piece to it & subtract from the hand
-        if (thisWellType == 'well' && thisWellOwner == thisHand.who){
+        if (thisWellType == 'well') {
             console.log('FOR WELL Did not skip a well this turn')
             gameBoard[thisWell].pieces += 1;
             console.log(gameBoard[thisWell].pieces);

@@ -86,7 +86,6 @@ function render() {
     })
 
     // if the game is over, add a "game over" msg to last well, end the function here
-    //CALL GAME OVER FN TO RENDER GAME OVER MSG IN DOM
     if (gameStatus === 'gameOver') {
         // call gameOver fun
         gameOver()
@@ -146,14 +145,7 @@ function takeTurn(e) {
     //create a thisHand object to represent the actions taken this turn,
     let thisHand = {};
     thisHand.who = playerMove.playerThisTurn;
-
-    //if this is the first move, continue onto the rest of the function, if this is the 2nd move or later, add lastTurn to turnTracker array
-    //add exisitng values 
-    let gameLog = playerMove.turnTracker;
-    if (gameLog.length !== 0) { 
-        gameLog.push(playerMove.lastTurn)
-    };
-
+    
     // move the pieces IN THE WELL THE USER SELECTED 
     //get id of btn clicked & use to find the well ID selected
     let btnID = e.target.id;
@@ -165,18 +157,22 @@ function takeTurn(e) {
     let wellSelected = gameBoard[wellNumStr];
     thisHand.selectedWell = wellNumStr;
     thisHand.numPieces = wellSelected.pieces;
-    playerMove.lastTurn.numPieces = wellSelected.pieces;
     //console.log(thisHand.numPieces);
+
+    //update playerMove.lastTurn with info avail so far
+    playerMove.lastTurn.who = thisHand.who;
+    playerMove.lastTurn.numPieces = thisHand.numPieces;
+    playerMove.lastTurn.selectedWell = wellNumStr;
 
     //empty the well
     gameBoard[wellNumStr].pieces = 0;
 
     //find the starting wellIDNum to start the while loop
-    let wellIDNum = parseInt(btnID.slice(3)) - 1
+    let startingWellIDNum = parseInt(btnID.slice(3)) - 1
 
     while (thisHand.numPieces > 0) {
         // define the next well we are looking at
-        let thisWell = 'well'+wellIDNum;
+        let thisWell = 'well'+startingWellIDNum;
         let thisWellType = gameBoard[thisWell].type;
         let thisWellOwner = gameBoard[thisWell].owner;
         // if that well is one the player can put a piece in aka is not the opp store, then add one piece to it & subtract from the hand
@@ -197,6 +193,9 @@ function takeTurn(e) {
         wellIDNum = wellIDNum === 0 ? 13 : wellIDNum-1;
     };
 
+    //unshift lastTurn info to turnTracker
+    playerMove.turnTracker.unshift(playerMove.lastTurn);
+
     render()
 }
 
@@ -205,12 +204,17 @@ function takeTurn(e) {
 //function to switch to the next player's turn and select from a different row of wells
 function changePlayer(){
     console.log('this is the changePlayer fn')
+    //if last turn = player A, make this turn player B, & vice versa
+    // if player B's turn, call comp turn
+    //NOTE - to update when imput of 1 or 2 player
 }
 
 //>>>>>>COMPUTER TURN FUNCTION
 //need a function that will take the turn on behalf of the computer
 function compTurn(){
-    'this is the compTurn fn'
+    console.log('this is the compTurn fn')
+    //make sure to add messages before calling takeTurn function for computer
+    //and before calling change player fn to switch back to user
 }
 
 
@@ -218,6 +222,7 @@ function compTurn(){
 //function to stop gameplay and render gameOver messaging in dom
 function gameOver(){
     console.log('this is the gameOver fn')
+    // dont forget to make the buttons not clickable
 }
 
 /*

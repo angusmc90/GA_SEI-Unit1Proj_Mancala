@@ -157,13 +157,20 @@ function takeTurn(e) {
     // move the pieces IN THE WELL THE USER SELECTED 
     //get id of btn clicked & use to find the well ID selected
     let btnID = e.target.id;
-    console.log(btnID)
     let wellNumStr = 'well'+btnID.slice(4);
-    console.log(wellNumStr);
 
+    //get selected well data
+    let wellSelected = gameBoard[wellNumStr];
+
+    //if wellSelected.piece == 0, render an error message & stop fn execution
+    if (wellSelected.pieces === 0){
+        gameplayMsg('error');
+        return
+    }
+
+// NEED TO RUN AN ERROR MSG IF THEY SELECT A WELL WITH 0 PIECES
 
     //update thisHand
-    let wellSelected = gameBoard[wellNumStr];
     thisHand.selectedWell = wellNumStr;
     thisHand.numPieces = wellSelected.pieces;
     //console.log(thisHand.numPieces);
@@ -221,6 +228,9 @@ function changePlayer(){
     //change the well the btn selects based on the current player
     changeBtnDir(playerMove.playerThisTurn);
 
+    //display message to the user on who's turn it is
+    gameplayMsg(playerMove.playerThisTurn);
+
     // if player B's turn, call comp turn
     //NOTE - to update when imput of 1 or 2 player
 }
@@ -247,8 +257,24 @@ function compTurn(){
 }
 
 
+//>>>>>>ERROR MSG FUNCTION
+//function to stop gameplay and render mid-gameplay messages in play area
+function gameplayMsg(e){
+    console.log('==GAMEPLAY MESSAGE==')
+    // dont forget to make the buttons not clickable
+
+    let messageArea = document.getElementById('gameplayMessage');
+    if (e == 'playerA') {
+        messageArea.innerText('<span class="turnDeclariton">It\'s your turn, PlayerA!</span><br>Click a button below to pick a well and make your move!')
+    } else if (e == 'playerB') {
+        messageArea.innerText('<span class="turnDeclariton">It\'s the robot\'s turn!</span><br>Click <button id="compStart">this button</button> to see what move it will make!')
+    } else if (e == 'error') {
+        console.log('<span class="errorMsg">ERROR!</span>You cannot select a well with no pieces in it! Please pick again!</span>')
+    }
+}
+
 //>>>>>>GAME OVER FUNCTION
-//function to stop gameplay and render gameOver messaging in dom
+//function to stop gameplay and render gameOver in dom
 function gameOver(){
     console.log('==GAME OVER==')
     // dont forget to make the buttons not clickable
@@ -259,7 +285,6 @@ function gameOver(){
 TODO - 
 
 gameover function
-change player turn
 make the computer turn happen - include SOMEE user interface so it doesn't just happen in a flash - ideally one for "its player b's turn" and a pop-up of their selection
 
 ============================================

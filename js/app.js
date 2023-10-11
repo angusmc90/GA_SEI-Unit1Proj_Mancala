@@ -76,7 +76,6 @@ function render() {
     //call checkStatus function only after first player is picked
     if (playerMove.playerThisTurn !== 'notStarted') {
         checkStatus();
-        console.log('this ran')
     }
 
     //update board counters
@@ -87,6 +86,7 @@ function render() {
 
     //update btns based on playerTurn
     if (playerMove.playerThisTurn !== 'notStarted') {
+        console.log('change btn dir ran')
         changeBtnDir(playerMove.playerThisTurn);
     }
 
@@ -94,18 +94,21 @@ function render() {
     if (gameStatus === 'gameOver') {
         // call gameOver fun
         gameOver()
-    } else {
+    } else if (gameStatus === 'active') {
         //change to the next player
+        console.log('test')
         changePlayer()
     }
     
     //Section for testing the changes to state via console
-    console.log('rend_GAME BOARD---');
+    console.log('=====RENDER FUNCTION PRINT BEGIN')
+    console.log('GAME BOARD---');
     console.log(gameBoard);
-    console.log('rend_PLAYERMOVE----');
+    console.log('PLAYERMOVE----');
     console.log(playerMove);
-    console.log('rend_GAME STATUS----');
+    console.log('GAME STATUS----');
     console.log(gameStatus);
+    console.log('=====RENDER FUNCTION PRINT END')
 }
 
 //>>>>>>COIN FLIP FUNCTION
@@ -153,8 +156,9 @@ function takeTurn(e) {
     // move the pieces IN THE WELL THE USER SELECTED 
     //get id of btn clicked & use to find the well ID selected
     let btnID = e.target.id;
-    let wellNumStr = 'well'+btnID.slice(3);
-    //console.log(wellNumStr);
+    console.log(btnID)
+    let wellNumStr = 'well'+btnID.slice(4);
+    console.log(wellNumStr);
 
 
     //update thisHand
@@ -172,7 +176,7 @@ function takeTurn(e) {
     gameBoard[wellNumStr].pieces = 0;
 
     //find the starting wellIDNum to start the while loop
-    let startingWellIDNum = parseInt(btnID.slice(3)) - 1
+    let startingWellIDNum = parseInt(btnID.slice(4)) - 1
 
     while (thisHand.numPieces > 0) {
         // define the next well we are looking at
@@ -218,12 +222,12 @@ function changePlayer(){
 //>>>>>>CHANGE BTN SELECTION FUNCTION
 //function to change which set of wells is being selected from
 function changeBtnDir(e) {
-    console.log('change button direction fn')
     let playerID = e;
     //set btn ID to playerA or playerB attr based on playerID
     wellSelectors.forEach((e) => {
-        let idVal = e.target.getAttribute(playerID);
-        e.target.setAttribute('id', idVal)
+        let idVal = e.getAttribute(playerID);
+        e.setAttribute('id', idVal)
+        //console.log(idVal)
     });
 }
 

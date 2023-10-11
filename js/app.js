@@ -77,7 +77,7 @@ function render() {
     // if the game is over, add a "game over" msg to last well, end the function here
 
 
-    //if the game has started, then 
+    //when do I want to change the player? should this be a diff fn?
 
 
     //update board counters
@@ -179,6 +179,7 @@ function takeTurn(e) {
 
         // move onto next well, unless you are on well 0, in which case, set wellIDNum to 13 and contiue with loop
         wellIDNum = wellIDNum === 0 ? 13 : wellIDNum-1;
+        render()
     };
 
     console.log('---testing thisTurn function------')

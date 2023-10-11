@@ -161,46 +161,28 @@ function takeTurn(e) {
     let wellIDNum = parseInt(btnID.slice(3)) - 1
 
     while (thisHand.numPieces > 0) {
-        console.log('BEGINNING ONE PASS OF WHILE LOOP')
         // define the next well we are looking at
         let thisWell = 'well'+wellIDNum;
-        console.log(thisWell)
         let thisWellType = gameBoard[thisWell].type;
-        console.log(thisWellType)
         let thisWellOwner = gameBoard[thisWell].owner;
-        console.log(thisWellOwner)
         // if that well is one the player can put a piece in aka is not the opp store, then add one piece to it & subtract from the hand
         if (thisWellType == 'well') {
-            console.log('FOR WELL Did not skip a well this turn')
             gameBoard[thisWell].pieces += 1;
-            console.log(gameBoard[thisWell].pieces);
             thisHand.numPieces -= 1;
-            console.log(thisHand.numPieces)
-            console.log('FOR WELL end of conditional outputs')
         } else if (thisWellType == 'store' && thisWellOwner == thisHand.who) {
-            console.log('FOR STORE Did not skip a well this turn')
             gameBoard[thisWell].pieces += 1;
-            console.log(gameBoard[thisWell].pieces);
             thisHand.numPieces -= 1;
-            console.log(thisHand.numPieces)
-            console.log('FOR STORE end of conditional outputs')
         };
         
         //if this is the last piece, add to lastTurn subObject to turn tracker & v2 addition of capture functionality
         if (thisHand.numPieces === 0) {
             playerMove.lastTurn.lastWell = thisWell;
-            console.log('this should be the last well')
         };
 
         // move onto next well, unless you are on well 0, in which case, set wellIDNum to 13 and contiue with loop
         wellIDNum = wellIDNum === 0 ? 13 : wellIDNum-1;
-        console.log('-----ENDING ONE PASS OF WHILE LOOP')
     };
-
-    // console.log('---testing thisTurn function------')
-    // console.log(thisHand)
-    // console.log(playerMove)
-    // console.log(gameBoard)
+    
     render()
 }
 
@@ -228,6 +210,6 @@ peronsonal notes section
 
 == takeTurn - running whenever i click anywhere? Conditional doesnt seem to work
 == takeTurn - why did I need to make wellSelected = gameBoard[whatever]?
-
+== takeTurn - conditional in while loop - can i combine?
 
 */

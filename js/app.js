@@ -13,16 +13,20 @@ EVENT LISTENERS & DOM ELEMENTS==================
 
 const flip = document.querySelector('.restartGame'); //find the flip coin button / game start button
 const pieceCountEls = document.querySelectorAll('.seedCount'); //find the el where the piece counter will be
-const wellSelectors = document.querySelectorAll('.playBtn');//find the play buttons
+const wellSelectors = document.querySelectorAll('.playBtn'); //find the play buttons
+const compStart = document.querySelector('#compStart'); //button user will click to make sure the user can see the 
 
 // need to know when the user clicks buttons, specifically for:
 // BTN 1 - START GAME - use a class for this one? so same buttons can be used for re-running init & then in future versions with a "forfiet" button, that can be the ID so it runs an game-over screen with scores first?
 flip.addEventListener('click', coinFlip);
 
-// BTN 2ish - WELL SELECTION - when the user selects which well they want to play, take the turn
+// BTN "2" - WELL SELECTION - when the user selects which well they want to play, take the turn
 wellSelectors.forEach((e) => {
     addEventListener('click', takeTurn);
 });
+
+// BTN 3 - START COMPUTER TURN
+compStart.addEventListener('click', compTurn);
 
 /*
 CONTROLLERS ==================
@@ -86,6 +90,8 @@ function render() {
     })
     
     let firstTurn = playerMove.turnTracker.length > 0 ? false : true;
+// add a line about going again if the last piece is the well    
+    //let goAgain = 
     // if the game is over, add a "game over" msg to last well, end the function here
     if (gameStatus === 'gameOver') {
         // call gameOver fun
@@ -157,7 +163,7 @@ function takeTurn(e) {
     // move the pieces IN THE WELL THE USER SELECTED 
     //get id of btn clicked & use to find the well ID selected
     let btnID = e.target.id;
-    let wellNumStr = 'well'+btnID.slice(4);
+    let wellNumStr = 'well'+btnID.slice(7);
 
     //get selected well data
     let wellSelected = gameBoard[wellNumStr];
@@ -167,8 +173,6 @@ function takeTurn(e) {
         gameplayMsg('error');
         return
     }
-
-// NEED TO RUN AN ERROR MSG IF THEY SELECT A WELL WITH 0 PIECES
 
     //update thisHand
     thisHand.selectedWell = wellNumStr;
@@ -184,7 +188,7 @@ function takeTurn(e) {
     gameBoard[wellNumStr].pieces = 0;
 
     //find the starting wellIDNum to start the while loop
-    let strToInt = parseInt(btnID.slice(4))
+    let strToInt = parseInt(btnID.slice(7))
     let startingWellIDNum = strToInt === 0 ? 13 : strToInt - 1
 
     while (thisHand.numPieces > 0) {
@@ -243,7 +247,7 @@ function changeBtnDir(e) {
     //set btn ID to playerA or playerB attr based on playerID
     wellSelectors.forEach((e) => {
         let idVal = e.getAttribute(playerID);
-        e.setAttribute('id', idVal);
+        e.setAttribute('id', 'btn'+idVal);
         e.innerText = playerID == 'playerA' ? 'v' : '^';
     });
 }
@@ -252,8 +256,26 @@ function changeBtnDir(e) {
 //need a function that will take the turn on behalf of the computer
 function compTurn(){
     console.log('==COMP TURN==')
-    //make sure to add messages before calling takeTurn function for computer
-    //and before calling change player fn to switch back to user
+    //declare an arr that will hold the wells the computer will pick from
+    let allPlayerBWells =[];
+
+    //find all the of wells that belong to player B & push to array
+    for (let i =0 ; i <= 13 ; i++) {
+        let wellID = 'well'+i;
+        let wellDeets = gameBoard[wellID]
+        if (wellDeets.type == 'well' && wellDeets.owner == 'playerB'){
+            allPlayerBWells.push(gameBoard[wellID])
+        }
+    }
+    
+    //make new array of only selectable wells
+    let activeWells = allPlayerBWells.filter((e) => e.pieces > 0);
+    
+    //pick a random index from this array & call takeTurn function with it
+    let compArrPick = Math.floor(Math.random * activeWells.length);
+    let compWellPick = activeWells[compArrPick];
+    let compBtnClick = document.getElementById('btn'+compWellPick)
+    takeTurn(compBtnClick);
 }
 
 

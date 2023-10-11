@@ -85,6 +85,11 @@ function render() {
         e.innerText = gameBoard[wellNum].pieces;
     })
 
+    //update btns based on playerTurn
+    if (playerMove.playerThisTurn !== 'notStarted') {
+        changeBtnDir(playerMove.playerThisTurn);
+    }
+
     // if the game is over, add a "game over" msg to last well, end the function here
     if (gameStatus === 'gameOver') {
         // call gameOver fun
@@ -92,7 +97,6 @@ function render() {
     } else {
         //change to the next player
         changePlayer()
-
     }
     
     //Section for testing the changes to state via console
@@ -203,10 +207,31 @@ function takeTurn(e) {
 //>>>>>>CHANGE PLAYER FUNCTION
 //function to switch to the next player's turn and select from a different row of wells
 function changePlayer(){
-    console.log('this is the changePlayer fn')
+    let prevPlayer = playerMove.lastTurn.who
     //if last turn = player A, make this turn player B, & vice versa
+    playerMove.playerThisTurn = prevPlayer == 'playerA' ? 'playerB' : 'playerA'
+
     // if player B's turn, call comp turn
     //NOTE - to update when imput of 1 or 2 player
+}
+
+//>>>>>>CHANGE BTN SELECTION FUNCTION
+//function to change which set of wells is being selected from
+function changeBtnDir(e) {
+    console.log('change button direction fn')
+    let playerID = e;
+    //create an array of the btn ID numbers for the conditional to push to
+    let btnIDArr = [];
+    for (let i =0 ; i <= 13 ; i++) {
+        let wellID = 'well'+i;
+        let wellDeets = gameBoard[wellID]
+        if (wellDeets.owner === playerID && wellDeets.type === 'well'){
+            let btnIDStr = 'btn'+i
+            btnIDArr.push(btnIDStr)
+        }
+    }
+
+    //change button element id to the btn array
 }
 
 //>>>>>>COMPUTER TURN FUNCTION
@@ -240,5 +265,6 @@ peronsonal notes section
 == takeTurn - running whenever i click anywhere? Conditional doesnt seem to work
 == takeTurn - why did I need to make wellSelected = gameBoard[whatever]?
 == takeTurn - conditional in while loop - can i combine?
+== takeTurn - turnTracker keeps pushing wrong thing?
 
 */

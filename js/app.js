@@ -33,7 +33,7 @@ init();
 // to render a clean game board & prep for gameplay
 function init() {
     //set gameStatus
-    gameStatus = 'not started';
+    gameStatus = 'notStarted';
     //console.log('init_GAME STATUS ' + gameStatus);
 
     //reset the game board to starting state
@@ -57,12 +57,12 @@ function init() {
 
      //prep playerMove with correct data types
      playerMove = {
-        playerThisTurn : 'not started',
+        playerThisTurn : 'notStarted',
         lastTurn : { // added thisTurn and lastTurn based on gut. Maybe there is a better way to do this or maybe something that is too much for an MVP at all
-            who: 'not started',
-            selectedWell : 'not started',
+            who: 'notStarted',
+            selectedWell : 'notStarted',
             numPieces : 0,
-            lastWell : 'not started',
+            lastWell : 'notStarted',
         }, 
         turnTracker : [],
      };
@@ -73,7 +73,14 @@ function init() {
 
 //>>>>>RENDER FUNCTION
 function render() {
+    //call checkStatus function only after first player is picked
+    if (playerMove.playerThisTurn !== 'notStarted') {
+        checkStatus();
+        console.log('this ran')
+    }
+
     // if the game is over, add a "game over" msg to last well, end the function here
+    //CALL GAME OVER FN TO RENDER GAME OVER MSG IN DOM
 
 
     //when do I want to change the player? should this be a diff fn?
@@ -103,23 +110,20 @@ function coinFlip() {// function that randomly selects who goes first & makes ga
     //console.log(playerMove.playerThisTurn);
 
     //call updateStatus function
-    updateStatus('active');
+    //updateStatus('active');
+    checkStatus();
 
     //render gameboard
     render();
 }
 
-//>>>>>>UPDATE GAME STATUS FUNCTION (move pieces function?)
-function updateStatus(e) {
-    return e === 'active' ? gameStatus = 'active' : gameStatus = 'game over';
-}
-
+//>>>>>>CHECK STATUS FUNCTION
 function checkStatus(e) {
     //build a playerA & playerB wells
-    const playerAWells = 0;
-    const playerBWells = 0;
+    let playerAWells = 0;
+    let playerBWells = 0;
     //count pieces in each row
-    for (let i =0, i <= 13, i++) {
+    for (let i =0 ; i <= 13 ; i++) {
         let wellID = 'well'+i;
         let wellDeets = gameBoard[wellID]
         if (wellDeets.type == 'well' && wellDeets.owner == 'playerA'){
@@ -130,9 +134,7 @@ function checkStatus(e) {
     }
     //if sum of either = 0, set gameStatus to game over
     //either, set to active
-    gameStatus = playerAWells === 0 || playerBWells === 0 ? 'game over' : 'active';
-
-    //CALL GAME OVER FN TO RENDER GAME OVER MSG IN DOM
+    gameStatus = playerAWells === 0 || playerBWells === 0 ? 'gameOver' : 'active';
 }
 
 //>>>>>>TAKE TURN FUNCTION (move pieces function?)

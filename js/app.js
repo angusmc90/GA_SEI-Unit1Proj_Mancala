@@ -88,11 +88,13 @@ function render() {
     // if the game is over, add a "game over" msg to last well, end the function here
     //CALL GAME OVER FN TO RENDER GAME OVER MSG IN DOM
     if (gameStatus === 'gameOver') {
+        // call gameOver fun
         gameOver()
-    }
+    } else {
+        //change to the next player
+        changePlayer()
 
-    //when do I want to change the player? should this be a diff fn?
-    changePlayer();
+    }
     
     //Section for testing the changes to state via console
     console.log('rend_GAME BOARD---');

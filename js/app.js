@@ -220,18 +220,11 @@ function changePlayer(){
 function changeBtnDir(e) {
     console.log('change button direction fn')
     let playerID = e;
-    //create an array of the btn ID numbers for the conditional to push to
-    let btnIDArr = [];
-    for (let i =0 ; i <= 13 ; i++) {
-        let wellID = 'well'+i;
-        let wellDeets = gameBoard[wellID]
-        if (wellDeets.owner === playerID && wellDeets.type === 'well'){
-            let btnIDStr = 'btn'+i
-            btnIDArr.push(btnIDStr)
-        }
-    }
-
-    //change button element id to the btn array
+    //set btn ID to playerA or playerB attr based on playerID
+    wellSelectors.forEach((e) => {
+        let idVal = e.target.getAttribute(playerID);
+        e.target.setAttribute('id', idVal)
+    });
 }
 
 //>>>>>>COMPUTER TURN FUNCTION

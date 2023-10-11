@@ -269,12 +269,18 @@ function compTurn(){
         }
     }
     console.log(allPlayerBWells)
+    //
+    //
+    //im trapped here somewhere
+    //
+    //
+    console.log(allPlayerBWells.length())
 
     //declare a new array for only selectable wells
     let activeWells =[];
     //for each wellID in the allPlayerBWells, find which have more than 0 still in the gameBoard
     //if they have 0, remove from arr
-    for (let i = 0 ; i < allPlayerBWells.legnth ; i++){
+    for (let i = 0 ; i < allPlayerBWells.legnth() ; i++){
         let wellCheck = allPlayerBWells[i]
         console.log(wellCheck)
         if (gameBoard[wellCheck].pieces > 0) {

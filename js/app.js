@@ -145,7 +145,7 @@ function takeTurn(e) {
     //create a thisHand object to represent the actions taken this turn,
     let thisHand = {};
     thisHand.who = playerMove.playerThisTurn;
-    
+
     // move the pieces IN THE WELL THE USER SELECTED 
     //get id of btn clicked & use to find the well ID selected
     let btnID = e.target.id;
@@ -190,11 +190,11 @@ function takeTurn(e) {
         };
 
         // move onto next well, unless you are on well 0, in which case, set wellIDNum to 13 and contiue with loop
-        wellIDNum = wellIDNum === 0 ? 13 : wellIDNum-1;
+        startingWellIDNum = startingWellIDNum === 0 ? 13 : startingWellIDNum-1;
     };
 
-    //unshift lastTurn info to turnTracker
-    playerMove.turnTracker.unshift(playerMove.lastTurn);
+    //push lastTurn info to turnTracker
+    playerMove.turnTracker.push(playerMove.lastTurn);
 
     render()
 }

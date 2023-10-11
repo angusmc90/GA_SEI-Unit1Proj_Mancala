@@ -20,8 +20,11 @@ const wellSelectors = document.querySelectorAll('.playBtn'); //find the play but
 flip.addEventListener('click', coinFlip);
 
 // BTN "2" - WELL SELECTION - when the user selects which well they want to play, take the turn
-wellSelectors.forEach((e) => {
-    addEventListener('click', takeTurn);
+wellSelectors.forEach((btn) => {
+    btn.addEventListener('click', (e)=>{
+        console.log(e.target)
+        takeTurn(e.target.id) // we are passing the ID directly into the function here
+    });
 });
 
 /*
@@ -153,15 +156,16 @@ function checkStatus(e) {
 }
 
 //>>>>>>TAKE TURN FUNCTION (move pieces function?)
-function takeTurn(e) {
+function takeTurn(id) {
     console.log('==TAKE TURN==')
+    console.log(id)
     //create a thisHand object to represent the actions taken this turn,
     let thisHand = {};
     thisHand.who = playerMove.playerThisTurn;
 
     // move the pieces IN THE WELL THE USER SELECTED 
     //get id of btn clicked & use to find the well ID selected
-    let btnID = e.target.id;
+    let btnID = id;
     let wellNumStr = 'well'+btnID.slice(7);
 
     //get selected well data
@@ -268,31 +272,31 @@ function compTurn(){
             allPlayerBWells.push(wellID)
         }
     }
-    console.log(allPlayerBWells)
-    //
-    //
-    //im trapped here somewhere
-    //
-    //
-    console.log(allPlayerBWells.length())
 
     //declare a new array for only selectable wells
     let activeWells =[];
     //for each wellID in the allPlayerBWells, find which have more than 0 still in the gameBoard
     //if they have 0, remove from arr
-    for (let i = 0 ; i < allPlayerBWells.legnth() ; i++){
+    for (let i = 0 ; i < allPlayerBWells.length; i++){
         let wellCheck = allPlayerBWells[i]
         console.log(wellCheck)
         if (gameBoard[wellCheck].pieces > 0) {
             activeWells.push(wellCheck)
         }
     }
-    console.log(activeWells)
     
     //pick a random index from this array & call takeTurn function with it
-    let compArrPick = Math.floor(Math.random * activeWells.length);
+    let compArrPick = Math.floor(Math.random()*activeWells.length);
     let compWellPick = activeWells[compArrPick];
     let compBtnClick = document.getElementById('btn'+compWellPick)
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //passing compBtnClick is not passing teh same as a real click?
     takeTurn(compBtnClick);
 }
 
@@ -334,6 +338,9 @@ peronsonal notes section
 ============================================
 
 == takeTurn - running whenever i click anywhere? Conditional doesnt seem to work
+/// this is bc it was applying the click event to every element on the apge
+
+
 == takeTurn - why did I need to make wellSelected = gameBoard[whatever]?
 == takeTurn - conditional in while loop - can i combine?
 == takeTurn - turnTracker keeps pushing wrong thing?

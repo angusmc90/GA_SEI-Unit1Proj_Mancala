@@ -129,8 +129,8 @@ function updateStatus(e) {
 
 //>>>>>>TAKE TURN FUNCTION (move pieces function?)
 function takeTurn(e) {
-    //copy lastTurn property to create a thisHand object to represent the actions taken this turn
-    let thisHand = playerMove.lastTurn;
+    //create a thisHand object to represent the actions taken this turn,
+    let thisHand = {};
     thisHand.who = playerMove.playerThisTurn;
 
     //if this is the first move, continue onto the rest of the function, if this is the 2nd move or later, add lastTurn to turnTracker array
@@ -159,17 +159,23 @@ function takeTurn(e) {
 
     //find the starting wellIDNum to start the while loop
     let wellIDNum = parseInt(btnID.slice(3)) + 1
-    //loop through the rest of the wells, add one to each until the pieces in the hand are empty, skipping stores that are not the player's -note- use a i-- where if the number is less than 0, it starts at well 13
 
     while (thisHand.numPieces > 0) {
         // define the next well we are looking at
         let thisWell = 'well'+wellIDNum;
+        console.log(thisWell)
         let thisWellType = gameBoard[thisWell].type;
+        console.log(thisWellType)
         let thisWellOwner = gameBoard[thisWell].owner;
+        console.log(thisWellOwner)
         // if that well is one the player can put a piece in aka is not the opp store, then add one piece to it & subtract from the hand
         if (thisWellType !== 'store' && thisWellOwner !== thisHand.who){
+            console.log('Did not skip a well this turn')
             gameBoard[thisWell].pieces += 1;
+            console.log(gameBoard[thisWell].pieces);
             thisHand.numPieces -= 1;
+            console.log(thisHand.numPieces)
+            console.log('--end of conditional outputs')
         };
         
         //if this is the last piece, add to lastTurn subObject to turn tracker & v2 addition of capture functionality
@@ -179,14 +185,13 @@ function takeTurn(e) {
 
         // move onto next well, unless you are on well 0, in which case, set wellIDNum to 13 and contiue with loop
         wellIDNum = wellIDNum === 0 ? 13 : wellIDNum-1;
-        render()
     };
 
     console.log('---testing thisTurn function------')
-    console.log(thisHand)
-    console.log(playerMove)
-    console.log(gameBoard)
-    //render()
+    // console.log(thisHand)
+    // console.log(playerMove)
+    // console.log(gameBoard)
+    render()
 }
 
 

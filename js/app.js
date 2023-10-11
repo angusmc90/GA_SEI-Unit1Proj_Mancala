@@ -73,7 +73,6 @@ function init() {
 
 //>>>>>RENDER FUNCTION
 function render() {
-    let lastTurn = playerMove.lastTurn;
     // if the game is over, add a "game over" msg to last well, end the function here
 
 
@@ -85,18 +84,6 @@ function render() {
         let wellNum = e.parentElement.getAttribute('id');
         e.innerText = gameBoard[wellNum].pieces;
     })
-
-// COME BACK TO THIS ON SETTING GAME OVER WHEN DONE WITH OTHER SECTIONS
-//CONVERT pieceEls TO NUMBERS and add for sum?
-// GAME ENDS WHEN ONE PLAYERS SIDE IS EMPTY _ NEED TO FIX
-    // //update gameStatus - not started / active / game over
-    // //grab the number of pieces still in play
-    // let inPlayCount = 48;
-    // gameBoard.forEach((e) => {
-    //     let wellType = e.
-    // })
-    // // use if sum of pieces in wells = 0, updateStatus to game over
-    // inPlayCount = 0 ? updateStatus('game over') : 
     
     //Section for testing the changes to state via console
     console.log('rend_GAME BOARD---');
@@ -182,23 +169,13 @@ function takeTurn(e) {
         // move onto next well, unless you are on well 0, in which case, set wellIDNum to 13 and contiue with loop
         wellIDNum = wellIDNum === 0 ? 13 : wellIDNum-1;
     };
-    
+
     render()
 }
 
 
 //>>>>>>COMPUTER TURN FUNCTION
 //need a function that will take the turn on behalf of the computer
-
-
-
-
-
-// FOR BUILD TESTING - NOT GOING IN FINAL PRODUCT
-// renderWellChange Function
-function renderWellChange(e){
-    console.log('x')
-}
 
 
 

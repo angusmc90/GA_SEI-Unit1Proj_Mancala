@@ -14,7 +14,6 @@ EVENT LISTENERS & DOM ELEMENTS==================
 const flip = document.querySelector('.restartGame'); //find the flip coin button / game start button
 const pieceCountEls = document.querySelectorAll('.seedCount'); //find the el where the piece counter will be
 const wellSelectors = document.querySelectorAll('.playBtn'); //find the play buttons
-const compStart = document.querySelector('#compStart'); //button user will click to make sure the user can see the 
 
 // need to know when the user clicks buttons, specifically for:
 // BTN 1 - START GAME - use a class for this one? so same buttons can be used for re-running init & then in future versions with a "forfiet" button, that can be the ID so it runs an game-over screen with scores first?
@@ -24,9 +23,6 @@ flip.addEventListener('click', coinFlip);
 wellSelectors.forEach((e) => {
     addEventListener('click', takeTurn);
 });
-
-// BTN 3 - START COMPUTER TURN
-compStart.addEventListener('click', compTurn);
 
 /*
 CONTROLLERS ==================
@@ -124,6 +120,9 @@ function coinFlip() {// function that randomly selects who goes first & makes ga
     //call updateStatus function
     //updateStatus('active');
     checkStatus();
+
+    //display message to the user on who's turn it is
+    gameplayMsg(playerMove.playerThisTurn);
 
     //set OG button direction
     changeBtnDir(playerMove.playerThisTurn);
@@ -256,20 +255,33 @@ function changeBtnDir(e) {
 //need a function that will take the turn on behalf of the computer
 function compTurn(){
     console.log('==COMP TURN==')
+
+
     //declare an arr that will hold the wells the computer will pick from
     let allPlayerBWells =[];
 
     //find all the of wells that belong to player B & push to array
-    for (let i =0 ; i <= 13 ; i++) {
+    for (let i = 0 ; i <= 13 ; i++) {
         let wellID = 'well'+i;
         let wellDeets = gameBoard[wellID]
         if (wellDeets.type == 'well' && wellDeets.owner == 'playerB'){
-            allPlayerBWells.push(gameBoard[wellID])
+            allPlayerBWells.push(wellID)
         }
     }
-    
-    //make new array of only selectable wells
-    let activeWells = allPlayerBWells.filter((e) => e.pieces > 0);
+    console.log(allPlayerBWells)
+
+    //declare a new array for only selectable wells
+    let activeWells =[];
+    //for each wellID in the allPlayerBWells, find which have more than 0 still in the gameBoard
+    //if they have 0, remove from arr
+    for (let i = 0 ; i < allPlayerBWells.legnth ; i++){
+        let wellCheck = allPlayerBWells[i]
+        console.log(wellCheck)
+        if (gameBoard[wellCheck].pieces > 0) {
+            activeWells.push(wellCheck)
+        }
+    }
+    console.log(activeWells)
     
     //pick a random index from this array & call takeTurn function with it
     let compArrPick = Math.floor(Math.random * activeWells.length);
@@ -285,13 +297,15 @@ function gameplayMsg(e){
     console.log('==GAMEPLAY MESSAGE==')
     // dont forget to make the buttons not clickable
 
-    let messageArea = document.getElementById('gameplayMessage');
+    let messageArea = document.getElementById('gameplayMsg');
     if (e == 'playerA') {
-        messageArea.innerText('<span class="turnDeclariton">It\'s your turn, PlayerA!</span><br>Click a button below to pick a well and make your move!')
+        messageArea.innerHTML = '<span class="turnDeclariton">It\'s your turn, PlayerA!</span><br>Click a button below to pick a well and make your move!';
     } else if (e == 'playerB') {
-        messageArea.innerText('<span class="turnDeclariton">It\'s the robot\'s turn!</span><br>Click <button id="compStart">this button</button> to see what move it will make!')
+        messageArea.innerHTML = '<span class="turnDeclariton">It\'s the robot\'s turn!</span><br>Click <button id="compStart">this button</button> to see what move it will make!'
+        const compStart = document.getElementById('compStart');
+        compStart.addEventListener('click', compTurn);
     } else if (e == 'error') {
-        console.log('<span class="errorMsg">ERROR!</span>You cannot select a well with no pieces in it! Please pick again!</span>')
+        messageArea.innerHTML = '<span class="errorMsg">ERROR!</span>You cannot select a well with no pieces in it! Please pick again!</span>'
     }
 }
 

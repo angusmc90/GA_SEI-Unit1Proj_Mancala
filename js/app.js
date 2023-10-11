@@ -102,9 +102,12 @@ function render() {
     // inPlayCount = 0 ? updateStatus('game over') : 
     
     //Section for testing the changes to state via console
-    console.log('rend_GAME BOARD '+ gameBoard);
-    console.log('rend_PLAYERMOVE '+ playerMove);
-    console.log('rend_GAME STATUS ' + gameStatus);
+    console.log('rend_GAME BOARD---');
+    console.log(gameBoard);
+    console.log('rend_PLAYERMOVE----');
+    console.log(playerMove);
+    console.log('rend_GAME STATUS----');
+    console.log(gameStatus);
 }
 
 //>>>>>>COIN FLIP FUNCTION
@@ -132,6 +135,7 @@ function takeTurn(e) {
     //copy lastTurn property to create a thisHand object to represent the actions taken this turn
     let thisHand = playerMove.lastTurn;
     thisHand.who = playerMove.playerThisTurn;
+
     //if this is the first move, continue onto the rest of the function, if this is the 2nd move or later, add lastTurn to turnTracker array
     //add exisitng values 
     let gameLog = playerMove.turnTracker;
@@ -142,23 +146,27 @@ function takeTurn(e) {
     // move the pieces IN THE WELL THE USER SELECTED 
     //get id of btn clicked & use to find the well ID selected
     let btnID = e.target.id;
-    let wellSelected = 'well'+btnID.slice(3);
-    console.log(wellSelected);
+    let wellNumStr = 'well'+btnID.slice(3);
+    console.log(wellNumStr);
 
 
     //update thisHand
-    thisHand.selectedWell = wellSelected;
-    //thisHand.numPieces = gameBoard[wellSelected]pieces;
-    console.log(gameBoard[wellSelected]);
-/*    //empty the well
-    gameBoard[wellSelected].pieces = 0;
-    //find the starting well -note- wellSelected + 1
+    let wellSelected = gameBoard[wellNumStr];
+    thisHand.selectedWell = wellNumStr;
+    thisHand.numPieces = wellSelected.pieces;
+    //console.log(thisHand.numPieces);
+    //empty the well
+    gameBoard[wellNumStr].pieces = 0;
+    //find the starting well ID Num
+    let startID = parseInt(btnID.slice(3)) + 1
+    console.log('btnID: '+btnID+"| startID: "+startID)
     //loop through the rest of the wells, add one to each until the pieces in the hand are empty, skipping stores that are not the player's -note- use a i-- where if the number is less than 0, it starts at well 13
-*/
+
 
     console.log('---testing thisTurn function------')
     // console.log(thisHand)
     // console.log(playerMove)
+    // console.log(gameBoard)
 }
 
 
@@ -170,7 +178,8 @@ function takeTurn(e) {
 peronsonal notes section
 ============================================
 
-== takeTurn - running whenever i click anywhere? Conditional doesnt seem to wrok.
+== takeTurn - running whenever i click anywhere? Conditional doesnt seem to work
+== takeTurn - why did I need to make wellSelected = gameBoard[whatever]?
 
 
 */

@@ -158,7 +158,7 @@ function takeTurn(e) {
     gameBoard[wellNumStr].pieces = 0;
 
     //find the starting wellIDNum to start the while loop
-    let wellIDNum = parseInt(btnID.slice(3)) + 1
+    let wellIDNum = parseInt(btnID.slice(3)) - 1
 
     while (thisHand.numPieces > 0) {
         console.log('BEGINNING ONE PASS OF WHILE LOOP')
@@ -170,13 +170,20 @@ function takeTurn(e) {
         let thisWellOwner = gameBoard[thisWell].owner;
         console.log(thisWellOwner)
         // if that well is one the player can put a piece in aka is not the opp store, then add one piece to it & subtract from the hand
-        if (thisWellType !== 'store' && thisWellOwner !== thisHand.who){
-            console.log('Did not skip a well this turn')
+        if (thisWellType == 'well' && thisWellOwner == thisHand.who){
+            console.log('FOR WELL Did not skip a well this turn')
             gameBoard[thisWell].pieces += 1;
             console.log(gameBoard[thisWell].pieces);
             thisHand.numPieces -= 1;
             console.log(thisHand.numPieces)
-            console.log('--end of conditional outputs')
+            console.log('FOR WELL end of conditional outputs')
+        } else if (thisWellType == 'store' && thisWellOwner == thisHand.who) {
+            console.log('FOR STORE Did not skip a well this turn')
+            gameBoard[thisWell].pieces += 1;
+            console.log(gameBoard[thisWell].pieces);
+            thisHand.numPieces -= 1;
+            console.log(thisHand.numPieces)
+            console.log('FOR STORE end of conditional outputs')
         };
         
         //if this is the last piece, add to lastTurn subObject to turn tracker & v2 addition of capture functionality

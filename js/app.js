@@ -49,7 +49,7 @@ function init() {
         well8 : {owner: "playerA", type: "well", pieces: 4,},
         well9 : {owner: "playerA", type: "well", pieces: 4,},
         well10 : {owner: "playerB", type: "store", pieces: 0,},
-        well11 : {owner: "playerA", type: "well", pieces: 4,},
+        well11 : {owner: "playerB", type: "well", pieces: 4,},
         well12 : {owner: "playerB", type: "well", pieces: 4,},
         well13 : {owner: "playerB", type: "well", pieces: 4,},
      };

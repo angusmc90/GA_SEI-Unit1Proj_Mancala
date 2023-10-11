@@ -2,7 +2,7 @@
 STATES ==================
 */
 
-let gameStatus; // "gameplay state" to camputure who's turn & status
+let gameStatus; // "gameplay state" to status
 let gameBoard; // object with keys to represent the well, and objects to represent which player owns the well, well vs store, and count of pieces
 let playerMove; // object that tracks who's turn it is, it was, the well selected last turn, the number of pieces taken from that well, the well that last piece was placed in, and a turn tracker array
 
@@ -34,7 +34,7 @@ init();
 function init() {
     //set gameStatus
     gameStatus = 'not started';
-    console.log('init_GAME STATUS ' + gameStatus);
+    //console.log('init_GAME STATUS ' + gameStatus);
 
     //reset the game board to starting state
     gameBoard = {
@@ -53,26 +53,25 @@ function init() {
         well12 : {owner: "playerB", type: "well", pieces: 4,},
         well13 : {owner: "playerB", type: "well", pieces: 4,},
      };
-     console.log('init_GAME BOARD '+ gameBoard);
+     //console.log('init_GAME BOARD '+ gameBoard);
 
      //prep playerMove with correct data types
      playerMove = {
         playerThisTurn : 'not started',
         lastTurn : { // added thisTurn and lastTurn based on gut. Maybe there is a better way to do this or maybe something that is too much for an MVP at all
             who: 'not started',
-            selectedtWell : 'not started',
+            selectedWell : 'not started',
             numPieces : 0,
             lastWell : 'not started',
         }, 
         turnTracker : [],
      };
-     console.log('init_PLAYERMOVE '+ playerMove);
+     //console.log('init_PLAYERMOVE '+ playerMove);
 
      render();
 }
 
 //>>>>>RENDER FUNCTION
-// what renders the game board
 function render() {
     let lastTurn = playerMove.lastTurn;
     // if the game is over, add a "game over" msg to last well, end the function here
@@ -92,6 +91,7 @@ function render() {
 
 // COME BACK TO THIS ON SETTING GAME OVER WHEN DONE WITH OTHER SECTIONS
 //CONVERT pieceEls TO NUMBERS and add for sum?
+// GAME ENDS WHEN ONE PLAYERS SIDE IS EMPTY _ NEED TO FIX
     // //update gameStatus - not started / active / game over
     // //grab the number of pieces still in play
     // let inPlayCount = 48;
@@ -112,9 +112,8 @@ function coinFlip() {// function that randomly selects who goes first & makes ga
     //Randomly assign a player to go first
     let flipNum = Math.ceil(Math.random()*10) % 2;
     let coinSide = flipNum === 0 ? 'heads' : 'tails';
-    console.log(coinSide)
     playerMove.playerThisTurn = coinSide === 'heads' ? 'playerB' : 'playerA';
-    console.log(playerMove.playerThisTurn);
+    //console.log(playerMove.playerThisTurn);
 
     //call updateStatus function
     updateStatus('active');
@@ -130,7 +129,7 @@ function updateStatus(e) {
 
 //>>>>>>TAKE TURN FUNCTION (move pieces function?)
 function takeTurn(e) {
-    //construct an object to track of current player's hand
+    //copy lastTurn property to create a thisHand object to represent the actions taken this turn
     let thisHand = playerMove.lastTurn;
     thisHand.who = playerMove.playerThisTurn;
     //if this is the first move, continue onto the rest of the function, if this is the 2nd move or later, add lastTurn to turnTracker array
@@ -147,19 +146,19 @@ function takeTurn(e) {
     console.log(wellSelected);
 
 
-/*
     //update thisHand
     thisHand.selectedWell = wellSelected;
-    thisHand.numPieces = gameBoard[wellSelected].pieces;
-    //empty the well
+    //thisHand.numPieces = gameBoard[wellSelected]pieces;
+    console.log(gameBoard[wellSelected]);
+/*    //empty the well
     gameBoard[wellSelected].pieces = 0;
     //find the starting well -note- wellSelected + 1
     //loop through the rest of the wells, add one to each until the pieces in the hand are empty, skipping stores that are not the player's -note- use a i-- where if the number is less than 0, it starts at well 13
 */
 
     console.log('---testing thisTurn function------')
-    console.log(thisHand)
-    console.log(playerMove)
+    // console.log(thisHand)
+    // console.log(playerMove)
 }
 
 
@@ -171,7 +170,7 @@ function takeTurn(e) {
 peronsonal notes section
 ============================================
 
-== takeTurn - first conditional not accepting break?
+== takeTurn - running whenever i click anywhere? Conditional doesnt seem to wrok.
 
 
 */

@@ -73,6 +73,7 @@ function init() {
 
 //>>>>>RENDER FUNCTION
 function render() {
+    console.log('==RENDER==')
     //call checkStatus function only after first player is picked
     if (playerMove.playerThisTurn !== 'notStarted') {
         checkStatus();
@@ -83,20 +84,14 @@ function render() {
         let wellNum = e.parentElement.getAttribute('id');
         e.innerText = gameBoard[wellNum].pieces;
     })
-
-    //update btns based on playerTurn
-    if (playerMove.playerThisTurn !== 'notStarted') {
-        console.log('change btn dir ran')
-        changeBtnDir(playerMove.playerThisTurn);
-    }
-
+    
+    let firstTurn = playerMove.turnTracker.length > 0 ? false : true;
     // if the game is over, add a "game over" msg to last well, end the function here
     if (gameStatus === 'gameOver') {
         // call gameOver fun
         gameOver()
-    } else if (gameStatus === 'active') {
+    } else if (gameStatus === 'active' && firstTurn === false ) {
         //change to the next player
-        console.log('test')
         changePlayer()
     }
     
@@ -113,6 +108,7 @@ function render() {
 
 //>>>>>>COIN FLIP FUNCTION
 function coinFlip() {// function that randomly selects who goes first & makes gameplay active
+    console.log('==COIN FLIP==')
     //Randomly assign a player to go first
     let flipNum = Math.ceil(Math.random()*10) % 2;
     let coinSide = flipNum === 0 ? 'heads' : 'tails';
@@ -123,12 +119,16 @@ function coinFlip() {// function that randomly selects who goes first & makes ga
     //updateStatus('active');
     checkStatus();
 
+    //set OG button direction
+    changeBtnDir(playerMove.playerThisTurn);
+
     //render gameboard
     render();
 }
 
 //>>>>>>CHECK STATUS FUNCTION
 function checkStatus(e) {
+    console.log('==CHECK STATUS==')
     //build a playerA & playerB wells
     let playerAWells = 0;
     let playerBWells = 0;
@@ -149,6 +149,7 @@ function checkStatus(e) {
 
 //>>>>>>TAKE TURN FUNCTION (move pieces function?)
 function takeTurn(e) {
+    console.log('==TAKE TURN==')
     //create a thisHand object to represent the actions taken this turn,
     let thisHand = {};
     thisHand.who = playerMove.playerThisTurn;
@@ -176,7 +177,8 @@ function takeTurn(e) {
     gameBoard[wellNumStr].pieces = 0;
 
     //find the starting wellIDNum to start the while loop
-    let startingWellIDNum = parseInt(btnID.slice(4)) - 1
+    let strToInt = parseInt(btnID.slice(4))
+    let startingWellIDNum = strToInt === 0 ? 13 : strToInt - 1
 
     while (thisHand.numPieces > 0) {
         // define the next well we are looking at
@@ -211,9 +213,13 @@ function takeTurn(e) {
 //>>>>>>CHANGE PLAYER FUNCTION
 //function to switch to the next player's turn and select from a different row of wells
 function changePlayer(){
+    console.log('==CHANGE PLAYER==')
     let prevPlayer = playerMove.lastTurn.who
     //if last turn = player A, make this turn player B, & vice versa
     playerMove.playerThisTurn = prevPlayer == 'playerA' ? 'playerB' : 'playerA'
+
+    //change the well the btn selects based on the current player
+    changeBtnDir(playerMove.playerThisTurn);
 
     // if player B's turn, call comp turn
     //NOTE - to update when imput of 1 or 2 player
@@ -222,19 +228,20 @@ function changePlayer(){
 //>>>>>>CHANGE BTN SELECTION FUNCTION
 //function to change which set of wells is being selected from
 function changeBtnDir(e) {
+    console.log('==CHANGE BTN DIRECTION==')
     let playerID = e;
     //set btn ID to playerA or playerB attr based on playerID
     wellSelectors.forEach((e) => {
         let idVal = e.getAttribute(playerID);
-        e.setAttribute('id', idVal)
-        //console.log(idVal)
+        e.setAttribute('id', idVal);
+        e.innerText = playerID == 'playerA' ? 'v' : '^';
     });
 }
 
 //>>>>>>COMPUTER TURN FUNCTION
 //need a function that will take the turn on behalf of the computer
 function compTurn(){
-    console.log('this is the compTurn fn')
+    console.log('==COMP TURN==')
     //make sure to add messages before calling takeTurn function for computer
     //and before calling change player fn to switch back to user
 }
@@ -243,7 +250,7 @@ function compTurn(){
 //>>>>>>GAME OVER FUNCTION
 //function to stop gameplay and render gameOver messaging in dom
 function gameOver(){
-    console.log('this is the gameOver fn')
+    console.log('==GAME OVER==')
     // dont forget to make the buttons not clickable
 }
 

@@ -144,7 +144,7 @@ function takeTurn(e) {
     //get id of btn clicked & use to find the well ID selected
     let btnID = e.target.id;
     let wellNumStr = 'well'+btnID.slice(3);
-    console.log(wellNumStr);
+    //console.log(wellNumStr);
 
 
     //update thisHand
@@ -182,14 +182,15 @@ function takeTurn(e) {
         //if this is the last piece, add to lastTurn subObject to turn tracker & v2 addition of capture functionality
         if (thisHand.numPieces === 0) {
             playerMove.lastTurn.lastWell = thisWell;
+            console.log('this should be the last well')
         };
 
         // move onto next well, unless you are on well 0, in which case, set wellIDNum to 13 and contiue with loop
         wellIDNum = wellIDNum === 0 ? 13 : wellIDNum-1;
-        console.log('ENDING ONE PASS OF WHILE LOOP')
+        console.log('-----ENDING ONE PASS OF WHILE LOOP')
     };
 
-    console.log('---testing thisTurn function------')
+    // console.log('---testing thisTurn function------')
     // console.log(thisHand)
     // console.log(playerMove)
     // console.log(gameBoard)

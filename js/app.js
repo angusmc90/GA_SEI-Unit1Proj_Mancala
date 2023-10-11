@@ -161,6 +161,7 @@ function takeTurn(e) {
     let wellIDNum = parseInt(btnID.slice(3)) + 1
 
     while (thisHand.numPieces > 0) {
+        console.log('BEGINNING ONE PASS OF WHILE LOOP')
         // define the next well we are looking at
         let thisWell = 'well'+wellIDNum;
         console.log(thisWell)
@@ -185,6 +186,7 @@ function takeTurn(e) {
 
         // move onto next well, unless you are on well 0, in which case, set wellIDNum to 13 and contiue with loop
         wellIDNum = wellIDNum === 0 ? 13 : wellIDNum-1;
+        console.log('ENDING ONE PASS OF WHILE LOOP')
     };
 
     console.log('---testing thisTurn function------')

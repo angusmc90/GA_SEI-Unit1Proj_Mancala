@@ -89,12 +89,17 @@ function render() {
     })
     
     let firstTurn = playerMove.turnTracker.length > 0 ? false : true;
-// add a line about going again if the last piece is the well    
-    //let goAgain = 
+    
+    // check if the same player gets to go again
+    let lastWell = playerMove.lastTurn.lastWell;
+    let goAgain = gameBoard[lastWell].type == 'store' ? true : false;
     // if the game is over, add a "game over" msg to last well, end the function here
     if (gameStatus === 'gameOver') {
         // call gameOver fun
         gameOver()
+    } else if (goAgain === true) {
+        // if the last piece lands in the player's well, don't change players 
+        return
     } else if (gameStatus === 'active' && firstTurn === false ) {
         //change to the next player
         changePlayer()
@@ -311,7 +316,7 @@ function gameplayMsg(e){
         const compStart = document.getElementById('compStart');
         compStart.addEventListener('click', compTurn);
     } else if (e == 'error') {
-        messageArea.innerHTML = '<span class="errorMsg">ERROR!</span>You cannot select a well with no pieces in it! Please pick again!</span>'
+        messageArea.innerHTML = '<span class="errorMsg">ERROR!</span><br>You cannot select a well with no pieces in it! Please pick again!</span>'
     }
 }
 
@@ -326,8 +331,11 @@ function gameOver(){
 
 TODO - 
 
-gameover function
-make the computer turn happen - include SOMEE user interface so it doesn't just happen in a flash - ideally one for "its player b's turn" and a pop-up of their selection
+-gameover function
+-on comp turn, make buttons not clickable?
+-find a better was to pop gameplay message
+---include a msg with computer's turn
+---add a line to go again
 
 ============================================
 peronsonal notes section

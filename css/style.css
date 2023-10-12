@@ -26,14 +26,14 @@ ASK IF FLEX BOX CAN START IN THE CENTER AND DO THE COUNTER CLOCKWISE MOTION
 
 body{
     background-color: blueviolet;
-    /* display:flex;
-    justify-content: center; */
+    display:flex;
+    justify-content: center;
 }
 
 .container{
     display:flex;
     justify-content: center;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     max-width:75%
 }
 
@@ -44,38 +44,47 @@ header{
 header, section{
     display:flex;
     flex-direction:column;
-/*    justify-content: center;
-    flex-shrink:0; */
+    justify-content: flex-start;
     text-align: center;
     min-width:51%;
-    max-width:800px;
+    max-width:60%;
+    border:1px solid blue;
 }
 
 #gameBoard{
-    width:75%;
-    max-width: 4800px;
-    max-height: 10%;
-    /* display:flex;
-    flex-direction: column;
-    flex-wrap: wrap; */
+    min-width:75%;
+    max-width: 100%;
+    max-height: 300px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 div {
     border: 1px solid white;
     background: lime;
-    /**/
 }
 
-.store{
-    height:100%;
-    width:14%;
+.gameBoardCol{
+    display:flex;
+    flex-direction: column;
+    min-height: 100%;
+    max-width: 12%;
+    align-content: stretch;
+}
+
+ .store{
+    flex-grow:5;
+    flex-shrink:5;
+    align-items:stretch;
 }
 
 .well{
-    width:12%;
-    height:39%;
+    flex-grow:2;
+    flex-shrink:2;
 }
 
 .btnContainer{
-    height:20%;
+    flex-grow:1;
+    flex-shrink:1;
 }

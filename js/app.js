@@ -158,18 +158,21 @@ function checkStatus(e) {
 //>>>>>>TAKE TURN FUNCTION (move pieces function?)
 function takeTurn(id) {
     console.log('==TAKE TURN==')
-    console.log(id)
+    let btnID = id.slice(3);
+    console.log(btnID)
+
     //create a thisHand object to represent the actions taken this turn,
     let thisHand = {};
     thisHand.who = playerMove.playerThisTurn;
 
     // move the pieces IN THE WELL THE USER SELECTED 
-    //get id of btn clicked & use to find the well ID selected
-    let btnID = id;
-    let wellNumStr = 'well'+btnID.slice(7);
+    // get id of btn clicked & use to find the well ID selected
+    // let btnID = id;
+    // let wellNumStr = 'well'+btnID.slice(7);
 
     //get selected well data
-    let wellSelected = gameBoard[wellNumStr];
+    let wellSelected = gameBoard[btnID];
+    console.log(wellSelected)
 
     //if wellSelected.piece == 0, render an error message & stop fn execution
     if (wellSelected.pieces === 0){
@@ -178,20 +181,22 @@ function takeTurn(id) {
     }
 
     //update thisHand
-    thisHand.selectedWell = wellNumStr;
+    thisHand.selectedWell = btnID;
     thisHand.numPieces = wellSelected.pieces;
     //console.log(thisHand.numPieces);
 
     //update playerMove.lastTurn with info avail so far
     playerMove.lastTurn.who = thisHand.who;
     playerMove.lastTurn.numPieces = thisHand.numPieces;
-    playerMove.lastTurn.selectedWell = wellNumStr;
+    playerMove.lastTurn.selectedWell = btnID;
 
     //empty the well
-    gameBoard[wellNumStr].pieces = 0;
+    gameBoard[btnID].pieces = 0;
+    console.log(btnID)
 
     //find the starting wellIDNum to start the while loop
-    let strToInt = parseInt(btnID.slice(7))
+    let strToInt = parseInt(btnID.slice(4))
+    console.log(strToInt)
     let startingWellIDNum = strToInt === 0 ? 13 : strToInt - 1
 
     while (thisHand.numPieces > 0) {
@@ -287,17 +292,8 @@ function compTurn(){
     
     //pick a random index from this array & call takeTurn function with it
     let compArrPick = Math.floor(Math.random()*activeWells.length);
-    let compWellPick = activeWells[compArrPick];
-    let compBtnClick = document.getElementById('btn'+compWellPick)
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //passing compBtnClick is not passing teh same as a real click?
-    takeTurn(compBtnClick);
+    let compWellPick = 'btn' + activeWells[compArrPick];
+    takeTurn(compWellPick);
 }
 
 
@@ -343,6 +339,5 @@ peronsonal notes section
 
 == takeTurn - why did I need to make wellSelected = gameBoard[whatever]?
 == takeTurn - conditional in while loop - can i combine?
-== takeTurn - turnTracker keeps pushing wrong thing?
 
 */

@@ -34,7 +34,10 @@ body{
     display:flex;
     justify-content: center;
     flex-wrap: wrap;
-    max-width:75%
+    width:75%;
+    min-width:800px;
+    max-width: 1000px;
+    gap: 15px;
 }
 
 header{
@@ -44,7 +47,7 @@ header{
 header, section{
     display:flex;
     flex-direction:column;
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
     text-align: center;
     min-width:51%;
     max-width:60%;
@@ -54,10 +57,11 @@ header, section{
 #gameBoard{
     min-width:75%;
     max-width: 100%;
-    max-height: 300px;
-    display:flex;
+    max-height: 400px;
+    display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    align-content: space-around;
+    align-items: space-between;
 }
 
 div {
@@ -68,15 +72,19 @@ div {
 .gameBoardCol{
     display:flex;
     flex-direction: column;
-    min-height: 100%;
-    max-width: 12%;
+    min-height: 90%;
+    width: 12%;
     align-content: stretch;
 }
 
- .store{
+.well, .store, .btnContainer{
+    display:flex;
+    align-items: center;
+}
+
+.store{
     flex-grow:5;
     flex-shrink:5;
-    align-items:stretch;
 }
 
 .well{
@@ -88,3 +96,8 @@ div {
     flex-grow:1;
     flex-shrink:1;
 }
+
+h1, h4, h2{
+    margin: 9px;
+}
+

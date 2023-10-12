@@ -23,3 +23,28 @@ ASK IF FLEX BOX CAN START IN THE CENTER AND DO THE COUNTER CLOCKWISE MOTION
 
 
 */
+
+body{
+    text-align: center;
+    background-color: purple;
+    /* display: flex;
+    flex-direction: column;
+    align-content: space-around; */
+}
+
+header{
+    background-color: rgba(255,255,255,0.5);
+}
+
+section, header{
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: space-around;
+    max-width: 35%;
+}
+
+section, #gameTitle, #subtitle{
+    min-width: 51%;
+    padding:7px;
+}

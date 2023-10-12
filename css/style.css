@@ -34,11 +34,12 @@ body{
     display:flex;
     justify-content: center;
     flex-wrap: wrap;
-    max-width:80%
+    width:75%
 }
 
 header{
     background-color: rgba(255,255,255,0.5);
+    margin-left:auto;
 }
 
 header, section{
@@ -46,19 +47,21 @@ header, section{
     flex-direction:column;
     /* justify-content: center; */
     text-align: center;
-    width:51%;
+    min-width:51%;
     max-width:800px;
+    flex-shrink:0;
 }
 
 #gameBoard{
     width:75%;
-    max-width: 1200px;
+    max-width: 4800px;
+    max-height: 10%;
     display:flex;
     flex-direction: column;
     flex-wrap: wrap;
 }
 
-#gameboard > div {
+div {
     border: 1px solid white;
     background: lime;
 }
@@ -70,4 +73,9 @@ header, section{
 
 .well{
     width:12%;
+    height:39%;
+}
+
+.btnContainer{
+    height:20%;
 }

@@ -328,7 +328,7 @@ function gameplayMsg(e){
     if (e == 'playerA') {
         messageArea.innerHTML = '<div><span class="instructMsg">It\'s your turn, Player!</span><br><span class="instructMsg">Click a button below to pick a well and make your move!</span></div>';
     } else if (e == 'playerB') {
-        messageArea.innerHTML = '<div><span class="instructMsg">It\'s <strong>The Pharoh\'s</strong> turn!</span></div><button id="compStart">&nbsp;</button><div><span class="instructMsg">Click their face to see what move they will make!</span></div>'
+        messageArea.innerHTML = '<div><span class="instructMsg">It\'s <strong>The Pharoh\'s</strong> turn!</span></div><button id="compStart">&nbsp;</button><div><span class="instructMsg">Click their face to see what move they will make!</span></div>';
         const compStart = document.getElementById('compStart');
         compStart.addEventListener('click', compTurn);
     } else if (e == 'error') {

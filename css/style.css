@@ -26,10 +26,14 @@ ASK IF FLEX BOX CAN START IN THE CENTER AND DO THE COUNTER CLOCKWISE MOTION
 
 
 body{
+    min-height: 100%;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-image: url('https://i.imgur.com/rW6G1l0.jpeg');
     font-family: Noto Sans, sans-serif;
     font-weight: 200;
     font-size: 15px;
-    background-image: url('https://i.imgur.com/rW6G1l0.jpeg');
     display:flex;
     justify-content: center;
 }
@@ -289,7 +293,7 @@ ICONS FOR BUTTONS
     width: 70px;
     height: 70px;
     border: none;
-    transform: rotate(180deg);
+    transform: rotate(180deg);/* for animation later*/
 }
 
 .playerB{
@@ -304,14 +308,25 @@ ICONS FOR BUTTONS
     filter: grayscale(100%);
 } 
 
-#compStart {
+#compStart, #coinRa, #coinHorus{
     background-color: transparent;
-    background-image: url('https://i.imgur.com/zyzo4bR.png');
     background-repeat: no-repeat;
     background-size: cover;
     width: 70px;
     height: 70px;
     border: none;
+}
+
+#compStart {
+    background-image: url('https://i.imgur.com/zyzo4bR.png');
+}
+
+#coingHorus, #coinRa{
+    background-image: url('https://i.imgur.com/QXlBp9a.png');
+}
+
+#coinRa{
+    transform: scaleX(-1);
 }
 
 #selfPortrait {
@@ -340,7 +355,7 @@ ICONS FOR BUTTONS
     margin-right:25px;
 }
 
-#ankh {
+#ankhOpenDiv, #ankhCloseDiv {
     background-color: transparent;
     background-image: url('https://i.imgur.com/FXR8UNH.png');
     background-repeat: no-repeat;
@@ -350,3 +365,35 @@ ICONS FOR BUTTONS
     border: none;
     margin-top:10px;
 }
+
+#ankhCloseDiv{
+    transform: rotate(180deg); /* for animation later*/
+}
+
+/*Overlay*/
+/* 
+html, body{
+    min-height: 100%;
+}
+
+body{
+    position: relative;
+}
+
+.overlayMsg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.showMe{
+  display: block;
+}
+
+.hideMe{
+  display: none;
+} */

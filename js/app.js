@@ -5,6 +5,7 @@ STATES ==================
 let gameStatus; // "gameplay state" to status
 let gameBoard; // object with keys to represent the well, and objects to represent which player owns the well, well vs store, and count of pieces
 let playerMove; // object that tracks who's turn it is, it was, the well selected last turn, the number of pieces taken from that well, the well that last piece was placed in, and a turn tracker array
+let scores; // will need to call in player scores from a top-level at some point
 
 
 /*
@@ -69,6 +70,13 @@ function init() {
         }, 
         turnTracker : [],
      };
+
+     //
+     scores = {
+        playerA : 0,
+        playerB : 0,
+     }
+
      //console.log('init_PLAYERMOVE '+ playerMove);
 
      render();
@@ -137,7 +145,7 @@ function coinFlip() {// function that randomly selects who goes first & makes ga
     checkStatus();
 
     //display message to the user on who's turn it is
-    gameplayMsg(playerMove.playerThisTurn);
+    gameplayMsg(coingSide);
 
     //set OG button direction
     changeBtnDir(playerMove.playerThisTurn);
@@ -318,29 +326,83 @@ function compTurn(){
 }
 
 
-//>>>>>>ERROR MSG FUNCTION
-//function to stop gameplay and render mid-gameplay messages in play area
-function gameplayMsg(e){
-    console.log('==GAMEPLAY MESSAGE==')
-    // dont forget to make the buttons not clickable
-
-    let messageArea = document.getElementById('gameplayMsg');
-    if (e == 'playerA') {
-        messageArea.innerHTML = '<div class="instructMsg">It\'s your turn, Player!</div><img src="https://i.imgur.com/jsZ6wgG.png" id="selfPortrait"><div class="instructMsg">Click a button below to pick a well and make your move!</div>';
-    } else if (e == 'playerB') {
-        messageArea.innerHTML = '<div class="instructMsg">It\'s The Pharoh\'s turn!</span></div><button id="compStart">&nbsp;</button><div><span class="instructMsg">Click their face to see what move they will make!</div>';
-        const compStart = document.getElementById('compStart');
-        compStart.addEventListener('click', compTurn);
-    } else if (e == 'error') {
-        messageArea.innerHTML = '<div class="errorMsg instructMsg">ERROR!</div><img src="https://i.imgur.com/BUi4Vcg.png" class="errorImg"><div class="insructMsg">You cannot select a well with no pieces in it!<br><span class="instructMsg">Please make another selection!</div>'
-    }
-}
-
 //>>>>>>GAME OVER FUNCTION
 //function to stop gameplay and render gameOver in dom
 function gameOver(){
     console.log('==GAME OVER==')
     // dont forget to make the buttons not clickable
+    let playerAPoints = 0;
+    let playerBPoints = 0;
+    for (let i=0;i<gameBoard.length;i++){
+        let wellName = 'well' + i;
+        let thisWell = gameBoard[thisWell];
+        let wellOwner = thisWell.owner;
+        let points = thisWell.pieces;
+        if (wellOwner === 'playerA'){
+            playerAPoints = playerAPoints+points
+        } else {
+            playerBPoints = playerBPoints + points
+        }
+    }
+
+    scores.PlayerA = playerAPoints;
+    scores.PlayerB = playerBPoints;
+
+    if (playerAPoints === playerBPoints) {
+        gameplayMsg('tie');
+    } else if (playerAPoints > playerBPoints) {
+        gameplayMsg('userWins')
+    } else [
+        gameplayMsg('pharohWins')
+    ]
+}
+
+
+
+//>>>>>>ERROR MSG FUNCTION
+//function to stop gameplay and render mid-gameplay messages in play area
+function gameplayMsg(e){
+    console.log('==GAMEPLAY MESSAGE==')
+    let signal = e;
+    let winner ='';
+    let loser
+
+    //assign all of the msgs available to variables
+    let playerAsTurn = (
+        '<div class="instructMsg">It\'s your turn, Player!</div><img src="https://i.imgur.com/jsZ6wgG.png" id="selfPortrait"><div class="instructMsg">Click a button below to pick a well and make your move!</div>'
+    );
+    let playerBsTurn= (
+        '<div class="instructMsg">It\'s The Pharoh\'s turn!</div><button id="compStart">&nbsp;</button><div><span class="instructMsg">Click their face to see what move they will make!</div>'
+    )
+    // let playerBsLastTurn=()
+    let errorMsg = (
+        '<div class="errorMsg instructMsg">ERROR!</div><img src="https://i.imgur.com/BUi4Vcg.png" class="errorImg"><div class="insructMsg">You cannot select a well with no pieces in it!<br><span class="instructMsg">Please make another selection!</div>'
+    )
+    let flip4Horus = (
+        '<div class="instructMsg">Oh no! It looks like The Pharoh is going first!</div><button id="coinHorus" class="shimmer">&nbsp;</button><div>Let\'s hope this doesn\'t put us at a disadvantage!</div><br><br>'
+    )
+    let flip4Ra = (
+        '<div class="instructMsg">Yes! Looks like you get to go first!</div><button id="coinRa" class="shimmer">&nbsp;</button><div>Let\'s make the most of this! If we believe in the heart of the cards, we can\'t lose!</div><br><br>'
+    )
+    let userWins = (
+        '<div class="endgameMsg">Way to go Yugi boy!</div><div>Looks like you had the power of God & anime on your side!</div><img src=""><br><button id="">Play Again</button>'
+    )
+    let pharohWins = (
+        '<div class="endgameMsg">You\'ve been sent to the shadow realm!</div><div>This must be one of Yugi\'s games to try and take over my company!</div><img src=""><br><button id="">Now I can go find Mokuba</button>'
+    )
+    let results = (
+        '<div id="winner">{} : {}</div><div id="loser">{} : {}</div>'
+    )
+
+    //Add the right error message to the DOM based on the info passed into the function
+    let messageArea = document.getElementById('gameplayMsg');
+    messageArea.innerHTML = signal == 'playerA' ? playerAsTurn :
+                            signal == 'playerB' ? playerBsTurn :
+                            signal == 'error' ? errorMsg :
+                            signal == 'horus' ? flip4Horus + playerBsTurn :
+                            signal == 'ra' ? flip4Ra + playerAsTurn :
+                            signal == 'playerAWon' ? userWins : pharohWins
+
 }
 
 /*

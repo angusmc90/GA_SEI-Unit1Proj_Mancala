@@ -370,7 +370,7 @@ ICONS FOR BUTTONS
     margin-top:10px;
 }
 
-#ankhCloseDiv{
+.close, .open{
     transform: rotate(180deg); /* for animation later*/
 }
 

@@ -16,7 +16,7 @@ const flip = document.querySelector('.restartGame'); //find the flip coin button
 const pieceCountEls = document.querySelectorAll('.seedCount'); //find the el where the piece counter will be
 const wellSelectors = document.querySelectorAll('.playBtn'); //find the play buttons
 const instructions = document.querySelector('#stepByStep');
-const ahnk
+const ahnk= document.querySelector('#ankhOpenDiv');
 
 // need to know when the user clicks buttons, specifically for:
 // BTN 1 - START GAME - use a class for this one? so same buttons can be used for re-running init & then in future versions with a "forfiet" button, that can be the ID so it runs an game-over screen with scores first?
@@ -29,12 +29,15 @@ wellSelectors.forEach((btn) => {
     });
 });
 
-ahnk.addEventListener('click', (e) => {
-    let ahnk= e.target; 
-    if (!ahnk.classList.includes('hide')){
-        ahnk.classList.add('hide')
+ahnk.addEventListener('click', () => {
+    let instruct= instructions;
+    let ahnkPic = ahnk 
+    if (instruct.className == 'hide'){
+        instruct.className = 'noClass';
+        ahnkPic.className = 'close';
     } else {
-        ahnk.classList.remove('hide')
+        instruct.className = 'hide';
+        ahnkPic.className = 'open';
     }
 });
 

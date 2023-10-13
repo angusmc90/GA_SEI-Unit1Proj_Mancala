@@ -135,7 +135,7 @@ ul li::marker, ol li::marker{
     opacity: 0.8;
     color:black;
     font-weight: 500;
-    padding-top:5px;
+    padding-top:3px;
     border: 5px inset rgba(101, 101, 101, 0.75);
     border-radius: 10px 35px;
     min-height:125px;
@@ -215,8 +215,13 @@ img.pieces{
     width: 30%;
 }
 
-.plyBtn{
-    font-size: 50px;
+.instructMsg, .errorMsg {
+    font-weight:bold;
+    font-size:18px;
+}
+
+.errorMsg {
+    color:red;
 }
 
 /*
@@ -276,4 +281,17 @@ ICONS FOR BUTTONS
     width: 70px;
     height: 70px;
     border: none;
+}
+
+#selfPortrait {
+    border-radius: 5px;
+    margin:5px;
+    width:90px;
+    height:90px;
+}
+
+#errorImg {
+    width:70px;
+    height:70px;
+    filter: invert(14%) sepia(88%) saturate(6813%) hue-rotate(7deg) brightness(104%) contrast(122%);
 }

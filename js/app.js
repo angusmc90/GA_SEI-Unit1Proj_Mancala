@@ -326,13 +326,13 @@ function gameplayMsg(e){
 
     let messageArea = document.getElementById('gameplayMsg');
     if (e == 'playerA') {
-        messageArea.innerHTML = '<div><span class="instructMsg">It\'s your turn, Player!</span><br><span class="instructMsg">Click a button below to pick a well and make your move!</span></div>';
+        messageArea.innerHTML = '<div class="instructMsg">It\'s your turn, Player!</div><img src="https://i.imgur.com/jsZ6wgG.png" id="selfPortrait"><div class="instructMsg">Click a button below to pick a well and make your move!</div>';
     } else if (e == 'playerB') {
-        messageArea.innerHTML = '<div><span class="instructMsg">It\'s <strong>The Pharoh\'s</strong> turn!</span></div><button id="compStart">&nbsp;</button><div><span class="instructMsg">Click their face to see what move they will make!</span></div>';
+        messageArea.innerHTML = '<div class="instructMsg">It\'s The Pharoh\'s turn!</span></div><button id="compStart">&nbsp;</button><div><span class="instructMsg">Click their face to see what move they will make!</div>';
         const compStart = document.getElementById('compStart');
         compStart.addEventListener('click', compTurn);
     } else if (e == 'error') {
-        messageArea.innerHTML = '<div><span class="errorMsg instructMsg">ERROR!</span><br>You cannot select a well with no pieces in it!<br><span class="instructMsg">Please make another selection!</span></div>'
+        messageArea.innerHTML = '<div><span class="errorMsg instructMsg">ERROR!</span><br><img src="https://i.imgur.com/BUi4Vcg.png" class="errorImg">You cannot select a well with no pieces in it!<br><span class="instructMsg">Please make another selection!</span></div>'
     }
 }
 

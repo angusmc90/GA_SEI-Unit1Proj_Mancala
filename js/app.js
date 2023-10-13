@@ -257,11 +257,14 @@ function changePlayer(){
 function changeBtnDir(e) {
     console.log('==CHANGE BTN DIRECTION==')
     let playerID = e;
+    let classList = e.classList
     //set btn ID to playerA or playerB attr based on playerID
     wellSelectors.forEach((e) => {
         let idVal = e.getAttribute(playerID);
         e.setAttribute('id', 'btn'+idVal);
-        e.innerText = playerID == 'playerA' ? 'v' : '^';
+        let oldClass = playerID == 'playerA' ? 'playerB' : 'playerA';
+        classList.toggle(playerID);
+        classList.toggle(oldClass);
     });
 }
 

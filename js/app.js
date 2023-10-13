@@ -15,6 +15,8 @@ EVENT LISTENERS & DOM ELEMENTS==================
 const flip = document.querySelector('.restartGame'); //find the flip coin button / game start button
 const pieceCountEls = document.querySelectorAll('.seedCount'); //find the el where the piece counter will be
 const wellSelectors = document.querySelectorAll('.playBtn'); //find the play buttons
+const instructions = document.querySelector('#stepByStep');
+const ahnk
 
 // need to know when the user clicks buttons, specifically for:
 // BTN 1 - START GAME - use a class for this one? so same buttons can be used for re-running init & then in future versions with a "forfiet" button, that can be the ID so it runs an game-over screen with scores first?
@@ -25,6 +27,15 @@ wellSelectors.forEach((btn) => {
     btn.addEventListener('click', (e)=>{
         takeTurn(e.target.id) // we are passing the ID directly into the function here
     });
+});
+
+ahnk.addEventListener('click', (e) => {
+    let ahnk= e.target; 
+    if (!ahnk.classList.includes('hide')){
+        ahnk.classList.add('hide')
+    } else {
+        ahnk.classList.remove('hide')
+    }
 });
 
 /*
@@ -146,7 +157,7 @@ function coinFlip() {// function that randomly selects who goes first & makes ga
     checkStatus();
 
     //display message to the user on who's turn it is
-    gameplayMsg(coingSide);
+    gameplayMsg(coinSide);
 
     //set OG button direction
     changeBtnDir(playerMove.playerThisTurn);
@@ -378,17 +389,17 @@ function gameplayMsg(e){
         '<div class="instructMsg">It\'s your turn, Player!</div><img src="https://i.imgur.com/jsZ6wgG.png" id="selfPortrait"><div class="instructMsg">Click a button below to pick a well and make your move!</div>'
     );
     let playerBsTurn= (
-        '<div class="instructMsg">It\'s The Pharoh\'s turn!</div><button id="compStart">&nbsp;</button><div><span class="instructMsg">Click their face to see what move they will make!</div>'
+        '<div class="instructMsg">It\'s The Pharoh\'s turn!</div><button id="compStart"></button><div><span class="instructMsg">Click their face to see what move they will make!</div>'
     )
     // let playerBsLastTurn=()
     let errorMsg = (
         '<div class="errorMsg instructMsg">ERROR!</div><img src="https://i.imgur.com/BUi4Vcg.png" class="errorImg"><div class="insructMsg">You cannot select a well with no pieces in it!<br><span class="instructMsg">Please make another selection!</div>'
     )
     let flip4Horus = (
-        '<div class="instructMsg">Oh no! It looks like The Pharoh is going first!</div><button id="coinHorus" class="shimmer">&nbsp;</button><div>Let\'s hope this doesn\'t put us at a disadvantage!</div><br><br>'
+        '<div class="instructMsg">Oh no! It looks like The Pharoh is going first!</div><button id="coinHorus" class="shimmer"></button><div>Let\'s hope this doesn\'t put us at a disadvantage!</div><br><br>'
     )
     let flip4Ra = (
-        '<div class="instructMsg">Yes! Looks like you get to go first!</div><button id="coinRa" class="shimmer">&nbsp;</button><div>Let\'s make the most of this! If we believe in the heart of the cards, we can\'t lose!</div><br><br>'
+        '<div class="instructMsg">Yes! Looks like you get to go first!</div><button id="coinRa" class="shimmer"></button><div>Let\'s make the most of this! If we believe in the heart of the cards, we can\'t lose!</div><br><br>'
     )
     let userWins = (
         '<div class="endgameMsg">Way to go Yugi boy!</div><div>Looks like you had the power of God & anime on your side!</div><img src="https://i.imgur.com/3AGIElH.png" class="endgameImg"><br><button id="gameStartBtn">Play Again</button>'

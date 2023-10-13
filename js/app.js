@@ -23,7 +23,6 @@ flip.addEventListener('click', coinFlip);
 // BTN "2" - WELL SELECTION - when the user selects which well they want to play, take the turn
 wellSelectors.forEach((btn) => {
     btn.addEventListener('click', (e)=>{
-        console.log(e.target)
         takeTurn(e.target.id) // we are passing the ID directly into the function here
     });
 });
@@ -403,6 +402,7 @@ function gameplayMsg(e){
 
     //Add the right error message to the DOM based on the info passed into the function
     let messageArea;
+    let sectionEls = document.getElementsByName('section');
     
     if (gameStatus !== 'gameOver') {
         messageArea = document.getElementById('gameplayMsg')
@@ -411,9 +411,11 @@ function gameplayMsg(e){
                                 :signal == 'error' ? errorMsg 
                                 :signal == 'horus' ? flip4Horus + playerBsTurn : flip4Ra + playerAsTurn
     } else {
-        let sectionEls = document.getElementsByName('section');
-        sectionEls.setAttribute('class', 'hide');
-        document.getElementById('topContainerDiv').appendChild(section);
+        sectionEls.forEach((e) => {
+            e.className = 'hide';
+        });
+        let flexContainer = document.getElementById('topContainerDiv');
+        flexContainer.createElement('div');
         sectionEls.setAttribute('id', 'gameplayMsg');
         messageArea.innerHTML = signal == 'playerAWon' ? userWins + results : pharohWins + results
     }

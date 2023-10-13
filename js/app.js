@@ -415,7 +415,7 @@ function gameplayMsg(e){
             e.className = 'hide';
         });
         let flexContainer = document.getElementById('topContainerDiv');
-        flexContainer.createElement('div');
+        flexContainer.appendChild('div');
         sectionEls.setAttribute('id', 'gameplayMsg');
         messageArea.innerHTML = signal == 'playerAWon' ? userWins + results : pharohWins + results
     }

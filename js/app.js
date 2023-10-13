@@ -75,6 +75,8 @@ function init() {
      scores = {
         playerA : 0,
         playerB : 0,
+        winner : '',
+        loser : '',
      }
 
      //console.log('init_PLAYERMOVE '+ playerMove);
@@ -331,15 +333,15 @@ function compTurn(){
 function gameOver(){
     console.log('==GAME OVER==')
     // dont forget to make the buttons not clickable
-    let playerAPoints = 0;
-    let playerBPoints = 0;
+    let playerAPoints = scores.PlayerA + 1;
+    let playerBPoints = scores.PlayerB;
     for (let i=0;i<gameBoard.length;i++){
         let wellName = 'well' + i;
-        let thisWell = gameBoard[thisWell];
+        let thisWell = gameBoard[wellName];
         let wellOwner = thisWell.owner;
         let points = thisWell.pieces;
         if (wellOwner === 'playerA'){
-            playerAPoints = playerAPoints+points
+            playerAPoints = playerAPoints + points
         } else {
             playerBPoints = playerBPoints + points
         }
@@ -351,10 +353,15 @@ function gameOver(){
     if (playerAPoints === playerBPoints) {
         gameplayMsg('tie');
     } else if (playerAPoints > playerBPoints) {
-        gameplayMsg('userWins')
-    } else [
-        gameplayMsg('pharohWins')
-    ]
+        scores.Winner='You';
+        scores.Loser='The Pharoh';
+        gameplayMsg('userWins');
+    } else {
+        scores.Loser='You';
+        scores.Winner='The Pharoh';
+        gameplayMsg('userWins');
+        gameplayMsg('pharohWins');
+    }
 }
 
 
@@ -364,8 +371,8 @@ function gameOver(){
 function gameplayMsg(e){
     console.log('==GAMEPLAY MESSAGE==')
     let signal = e;
-    let winner ='';
-    let loser
+    let winner = scores.Winner;
+    let loser = scores.Loser;
 
     //assign all of the msgs available to variables
     let playerAsTurn = (
@@ -385,24 +392,31 @@ function gameplayMsg(e){
         '<div class="instructMsg">Yes! Looks like you get to go first!</div><button id="coinRa" class="shimmer">&nbsp;</button><div>Let\'s make the most of this! If we believe in the heart of the cards, we can\'t lose!</div><br><br>'
     )
     let userWins = (
-        '<div class="endgameMsg">Way to go Yugi boy!</div><div>Looks like you had the power of God & anime on your side!</div><img src=""><br><button id="">Play Again</button>'
+        '<div class="endgameMsg">Way to go Yugi boy!</div><div>Looks like you had the power of God & anime on your side!</div><img src="https://i.imgur.com/3AGIElH.png" class="endgameImg"><br><button id="gameStartBtn">Play Again</button>'
     )
     let pharohWins = (
-        '<div class="endgameMsg">You\'ve been sent to the shadow realm!</div><div>This must be one of Yugi\'s games to try and take over my company!</div><img src=""><br><button id="">Now I can go find Mokuba</button>'
+        '<div class="endgameMsg">You\'ve been sent to the shadow realm!</div><div>This must be one of Yugi\'s games to try and take over my company!</div><img src="https://i.imgur.com/czIXQq8.jpeg" class="endgameImg"><br><button id="gameStartBtn">Now I can go find Mokuba</button>'
     )
     let results = (
-        '<div id="winner">{} : {}</div><div id="loser">{} : {}</div>'
+        '<div id="winner">'+winner+' : '+scores[winner]+'</div><div id="loser">'+loser+' : '+scores[loser]+'</div>'
     )
 
     //Add the right error message to the DOM based on the info passed into the function
-    let messageArea = document.getElementById('gameplayMsg');
-    messageArea.innerHTML = signal == 'playerA' ? playerAsTurn :
-                            signal == 'playerB' ? playerBsTurn :
-                            signal == 'error' ? errorMsg :
-                            signal == 'horus' ? flip4Horus + playerBsTurn :
-                            signal == 'ra' ? flip4Ra + playerAsTurn :
-                            signal == 'playerAWon' ? userWins : pharohWins
-
+    let messageArea;
+    
+    if (gameStatus !== 'gameOver') {
+        messageArea = document.getElementById('gameplayMsg')
+        messageArea.innerHTML = signal == 'playerA' ? playerAsTurn
+                                :signal == 'playerB' ? playerBsTurn 
+                                :signal == 'error' ? errorMsg 
+                                :signal == 'horus' ? flip4Horus + playerBsTurn : flip4Ra + playerAsTurn
+    } else {
+        let sectionEls = document.getElementsByName('section');
+        sectionEls.setAttribute('class', 'hide');
+        document.getElementById('topContainerDiv').appendChild(section);
+        sectionEls.setAttribute('id', 'gameplayMsg');
+        messageArea.innerHTML = signal == 'playerAWon' ? userWins + results : pharohWins + results
+    }
 }
 
 /*

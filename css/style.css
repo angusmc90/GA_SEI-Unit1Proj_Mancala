@@ -259,6 +259,10 @@ img.pieces{
     100% {-webkit-mask-position:left}
   }
 
+  .hide{
+    display:none;
+  }
+
 /*
 
 ICONS FOR BUTTONS
@@ -323,6 +327,8 @@ ICONS FOR BUTTONS
 
 #coingHorus, #coinRa{
     background-image: url('https://i.imgur.com/QXlBp9a.png');
+    width: 90px;
+    height: 90px;
 }
 
 #coinRa{

@@ -119,11 +119,11 @@ ul li::marker, ol li::marker{
 }
 
 #infoDeetsContainer{
-    margin: 0 30px;
+    margin: 15px 30px;
     display:flex;
     flex-direction: column;
     justify-content: space-around;
-    min-height:265px;
+    min-height:300px;
 }
 
 #genInfo{
@@ -242,5 +242,23 @@ ICONS FOR BUTTONS
 }
 
 .playerA{
-    
+    background-color: transparent;
+    background-image: url('https://i.imgur.com/10PoxWm.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 70px;
+    height: 70px;
+    border: none;
+    transform: rotate(180deg);
+}
+
+.playerB{
+    background-color: transparent;
+    background-image: url('https://i.imgur.com/10PoxWm.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 70px;
+    height: 70px;
+    border: none;
+    filter: grayscale(100%);
 }

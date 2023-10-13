@@ -403,6 +403,7 @@ function gameplayMsg(e){
     //Add the right error message to the DOM based on the info passed into the function
     let messageArea;
     let sectionEls = document.getElementsByName('section');
+    let flexContainer = document.getElementById('topContainerDiv');
     
     if (gameStatus !== 'gameOver') {
         messageArea = document.getElementById('gameplayMsg')
@@ -414,7 +415,6 @@ function gameplayMsg(e){
         sectionEls.forEach((e) => {
             e.className = 'hide';
         });
-        let flexContainer = document.getElementById('topContainerDiv');
         flexContainer.appendChild('div');
         sectionEls.setAttribute('id', 'gameplayMsg');
         messageArea.innerHTML = signal == 'playerAWon' ? userWins + results : pharohWins + results

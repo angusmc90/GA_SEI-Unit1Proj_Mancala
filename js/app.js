@@ -326,13 +326,13 @@ function gameplayMsg(e){
 
     let messageArea = document.getElementById('gameplayMsg');
     if (e == 'playerA') {
-        messageArea.innerHTML = '<span class="turnDeclariton">It\'s your turn, PlayerA!</span><br>Click a button below to pick a well and make your move!';
+        messageArea.innerHTML = '<div><span class="instructMsg">It\'s your turn, Player!</span><br><span class="instructMsg">Click a button below to pick a well and make your move!</span></div>';
     } else if (e == 'playerB') {
-        messageArea.innerHTML = '<span class="turnDeclariton">It\'s the robot\'s turn!</span><br>Click <button id="compStart">this button</button> to see what move it will make!'
+        messageArea.innerHTML = '<div><span class="instructMsg">It\'s <strong>The Pharoh\'s</strong> turn!</span></div><button id="compStart">&nbsp;</button><div><span class="instructMsg">Click their face to see what move they will make!</span></div>'
         const compStart = document.getElementById('compStart');
         compStart.addEventListener('click', compTurn);
     } else if (e == 'error') {
-        messageArea.innerHTML = '<span class="errorMsg">ERROR!</span><br>You cannot select a well with no pieces in it! Please pick again!</span>'
+        messageArea.innerHTML = '<div><span class="errorMsg instructMsg">ERROR!</span><br>You cannot select a well with no pieces in it!<br><span class="instructMsg">Please make another selection!</span></div>'
     }
 }
 

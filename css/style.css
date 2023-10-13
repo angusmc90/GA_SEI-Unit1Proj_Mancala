@@ -145,6 +145,10 @@ ul li::marker, ol li::marker{
     align-items:center;
 }
 
+#gameplayMsg > div {
+    max-width: 95%;
+}
+
 #gameStartBtn{
     margin: 12px 0;
 }
@@ -254,9 +258,6 @@ ICONS FOR BUTTONS
 
 .playerB{
     display:none;
-}
-
-/* .playerB{
     background-color: transparent;
     background-image: url('https://i.imgur.com/10PoxWm.png');
     background-repeat: no-repeat;
@@ -265,4 +266,14 @@ ICONS FOR BUTTONS
     height: 70px;
     border: none;
     filter: grayscale(100%);
-} */
+} 
+
+#compStart {
+    background-color: transparent;
+    background-image: url('https://i.imgur.com/zyzo4bR.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 70px;
+    height: 70px;
+    border: none;
+}

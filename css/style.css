@@ -253,6 +253,10 @@ ICONS FOR BUTTONS
 }
 
 .playerB{
+    display:none;
+}
+
+/* .playerB{
     background-color: transparent;
     background-image: url('https://i.imgur.com/10PoxWm.png');
     background-repeat: no-repeat;
@@ -261,4 +265,4 @@ ICONS FOR BUTTONS
     height: 70px;
     border: none;
     filter: grayscale(100%);
-}
+} */

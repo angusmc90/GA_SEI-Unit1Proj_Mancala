@@ -85,24 +85,31 @@ function render() {
     //update board counters
     pieceCountEls.forEach((e) => {
         let wellNum = e.parentElement.getAttribute('id');
-        e.innerText = gameBoard[wellNum].pieces;
+        let numPieces = gameBoard[wellNum].pieces;
+        let imgEls = '<span class="seedCount"></span>';
+        for (let i=1; i <= numPieces; i++){
+            imgEls += '<img src="https://i.imgur.com/4v5EyDk.png" class="pieces">';
+        }
+        e.innerHTML = imgEls;
     })
     
     let firstTurn = playerMove.turnTracker.length > 0 ? false : true;
     
     // check if the same player gets to go again
-    let lastWell = playerMove.lastTurn.lastWell;
-    let goAgain = gameBoard[lastWell].type == 'store' ? true : false;
-    // if the game is over, add a "game over" msg to last well, end the function here
-    if (gameStatus === 'gameOver') {
-        // call gameOver fun
-        gameOver()
-    } else if (goAgain === true) {
-        // if the last piece lands in the player's well, don't change players 
-        return
-    } else if (gameStatus === 'active' && firstTurn === false ) {
-        //change to the next player
-        changePlayer()
+    if (!firstTurn) {
+        let lastWell = playerMove.lastTurn.lastWell;
+        let goAgain = gameBoard[lastWell].type == 'store' ? true : false;
+            // if the game is over, add a "game over" msg to last well, end the function here
+        if (gameStatus === 'gameOver') {
+            // call gameOver fun
+            gameOver()
+        } else if (goAgain === true) {
+            // if the last piece lands in the player's well, don't change players 
+            return
+        } else if (gameStatus === 'active' && firstTurn === false ) {
+            //change to the next player
+            changePlayer()
+        }
     }
     
     //Section for testing the changes to state via console
@@ -121,8 +128,8 @@ function coinFlip() {// function that randomly selects who goes first & makes ga
     console.log('==COIN FLIP==')
     //Randomly assign a player to go first
     let flipNum = Math.ceil(Math.random()*10) % 2;
-    let coinSide = flipNum === 0 ? 'heads' : 'tails';
-    playerMove.playerThisTurn = coinSide === 'heads' ? 'playerB' : 'playerA';
+    let coinSide = flipNum === 0 ? 'horus' : 'ra';
+    playerMove.playerThisTurn = coinSide === 'horus' ? 'playerB' : 'playerA';
     //console.log(playerMove.playerThisTurn);
 
     //call updateStatus function
@@ -256,15 +263,21 @@ function changePlayer(){
 //function to change which set of wells is being selected from
 function changeBtnDir(e) {
     console.log('==CHANGE BTN DIRECTION==')
-    let playerID = e;
-    let classList = e.classList
+    let playerID = e
+
     //set btn ID to playerA or playerB attr based on playerID
     wellSelectors.forEach((e) => {
         let idVal = e.getAttribute(playerID);
+        let classList = e.classList;
+        if (classList.contains('noone')){
+            classList.remove('noone')
+        };
         e.setAttribute('id', 'btn'+idVal);
         let oldClass = playerID == 'playerA' ? 'playerB' : 'playerA';
         classList.toggle(playerID);
-        classList.toggle(oldClass);
+        if (classList.contains(oldClass)){
+            classList.remove(oldClass)
+        };
     });
 }
 

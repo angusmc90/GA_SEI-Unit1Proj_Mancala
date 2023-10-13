@@ -4,27 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Merienda:wght@800&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Sans:ital,wght@0,200;0,800;1,200;1,800&display=swap');
+      </style>
     <link rel="stylesheet" href="css/style.css"/>
     <script defer src="js/app.js"></script>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Mancala</h1>
+            <h1>MANCALA</h1>
             <h4>by Angus McCann</h4>
         </header>
         <section id="howTo">
             <h2>How To Play</h2>
-            this is where the how-tos will go
+            <div id="howToDeetsContainer">
+                If you don't know how to play Mancala, you can click the ankh to learn more!
+                <div id="stepByStep">
+                    <h4 class="subHead">Game Play:</h4>
+                    <ol>
+                        <li>Place four stones into each of the pits.</li>
+                        <li>The starting player grabs all the stones from one hole on their side and drops them, one by one, into each pit around the board going in a counter-clockwise direction. If the player passes over one of the mancala stores or bowls, he or she would place a stone in there, too. Once the player doesn't have any more stones in hand, it's the other person's turn to do the same thing.</li>
+                        <li>If a player has enough stones to hit their own store, they place a stone in it. If it's the player's last stone, they get a free turn to go again. If you pass over another player's store during your turn, you do not place a stone in their pit.</li>
+                        <li>The game ends when one player has emptied the six holes of stones on their side. The other player then takes all the stones on their own side and places them into their store (or bowl).</li>
+                        <li>The winner of the game is the player with the most stones in their mancala store.</li>
+                    </ol>
+                    <h4 class="subHead">Tips:</h4>
+                    <ul>
+                        <li><strong>Get a free turn:</strong> When dropping stones into holes, you can drop one into your own mancala store (bowl). If it's your last stone in your hand, you get another turn.</li>
+                        <li><strong>Gather more stones:</strong> One way to amass more stones is by strategically dropping your last stone into an empty hole on your side of the board. If you manage that, you're allowed to reach across the board and take your opponent's stones that are in the opposite hole.</li>
+                        <li><strong>Think strategically:</strong> If you go first, pick up the stones in the fourth hole away from your mancala store (bowl). That way, you'll place the last stone in your store, and you'll get a free turn.</li>
+                    </ul>
+                </div>
+            </div>
         </section>
         <section id="infoBoard">
             <h2>Information Board</h2>
-            Here is where you will find information about who's turn it is, any actions you need to take, or if there are any errors!<br>Please see the area below on how to proceeed:
-            <div id="gameplayMsg">
-                To begin play, we need to pick who will go first. In order to do that, we will flip a coin!<br>
-                If the coin lands on heads, the computer will go first!<br>
-                If it lands on tails, you get to make the first move!<br>
-                <button class="restartGame" id="gameStartBtn">Click me to flip the coin!</button>
+            <div id="infoDeetsContainer">
+                Here is where you will find information about who's turn it is, any actions you need to take, or if there are any errors!<br>Please see the area below on how to proceeed:
+                <div id="gameplayMsg">
+                    To begin play, we need to pick who will go first. In order to do that, we will flip a coin!<br>
+                    If the coin lands on heads, the computer will go first!<br>
+                    If it lands on tails, you get to make the first move!<br>
+                    <button class="restartGame" id="gameStartBtn">Click me to flip the coin!</button>
+                </div>
             </div>
         </section>
         <section id="gameBoard">

@@ -42,6 +42,7 @@ body{
     min-width:800px;
     max-width: 1000px;
     gap: 20px;
+    z-index:10;
 }
 
 header, section{
@@ -132,7 +133,7 @@ ul li::marker, ol li::marker{
     align-self:flex-start;
 }
 
-#gameplayMsg{
+#gameplayMsg/*, #stepByStep*/{
     background-image: url('https://i.imgur.com/7rGRHQA.jpeg');
     opacity: 0.8;
     color:black;

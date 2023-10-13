@@ -332,7 +332,7 @@ function gameplayMsg(e){
         const compStart = document.getElementById('compStart');
         compStart.addEventListener('click', compTurn);
     } else if (e == 'error') {
-        messageArea.innerHTML = '<div><span class="errorMsg instructMsg">ERROR!</span><br><img src="https://i.imgur.com/BUi4Vcg.png" class="errorImg">You cannot select a well with no pieces in it!<br><span class="instructMsg">Please make another selection!</span></div>'
+        messageArea.innerHTML = '<div class="errorMsg instructMsg">ERROR!</div><img src="https://i.imgur.com/BUi4Vcg.png" class="errorImg"><div class="insructMsg">You cannot select a well with no pieces in it!<br><span class="instructMsg">Please make another selection!</div>'
     }
 }
 

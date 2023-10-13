@@ -41,7 +41,7 @@ body{
     width:85%;
     min-width:800px;
     max-width: 1000px;
-    gap: 15px;
+    gap: 20px;
 }
 
 header, section{
@@ -69,6 +69,8 @@ h1{
     border-bottom:2px solid #d4a200;
     letter-spacing: 0.2em;
     font-size: 45px;
+    display:flex;
+    justify-content: space-around;
 }
 
 h2 {
@@ -163,6 +165,7 @@ ul li::marker, ol li::marker{
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-between;
+    border-radius: 40px;
 }
 
 .boardContainer{
@@ -172,6 +175,7 @@ ul li::marker, ol li::marker{
     align-content: space-between;
     padding: 25px 10px;
     height: 355px;
+    border-radius: 0 0 36px 36px;
 }
 
 .gameBoardCol{
@@ -222,7 +226,33 @@ img.pieces{
 
 .errorMsg {
     color:red;
+    font-size:25px;
 }
+
+.imgOb{
+    width: 15%;
+    display:flex;
+    align-content:center;
+    justify-content:center; 
+}
+
+.imgOb > img {
+    position:fixed;
+    margin-top:45px;
+}
+
+.shimmer {
+    color: grey;
+    display:inline-block;
+    -webkit-mask:linear-gradient(-60deg,#000 30%,#0005,#000 70%) right/300% 100%;
+    background-repeat: no-repeat;
+    animation: shimmer 4.5s infinite;
+  
+  }
+  
+  @keyframes shimmer {
+    100% {-webkit-mask-position:left}
+  }
 
 /*
 
@@ -294,4 +324,28 @@ ICONS FOR BUTTONS
     width:70px;
     height:70px;
     filter: invert(14%) sepia(88%) saturate(6813%) hue-rotate(7deg) brightness(104%) contrast(122%);
+}
+
+#cat1, #cat2{
+    width: 50px;
+}
+
+#cat1{
+    margin-left:25px;
+}
+
+#cat2{
+    transform: scaleX(-1);
+    margin-right:25px;
+}
+
+#ankh {
+    background-color: transparent;
+    background-image: url('https://i.imgur.com/FXR8UNH.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 60px;
+    height: 60px;
+    border: none;
+    margin-top:10px;
 }

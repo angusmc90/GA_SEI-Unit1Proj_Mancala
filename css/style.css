@@ -24,8 +24,9 @@ ASK IF FLEX BOX CAN START IN THE CENTER AND DO THE COUNTER CLOCKWISE MOTION
 
 */
 
+
 body{
-    background-color: blueviolet;
+    background-image: url('https://i.imgur.com/rW6G1l0.jpeg');
     display:flex;
     justify-content: center;
 }
@@ -34,70 +35,101 @@ body{
     display:flex;
     justify-content: center;
     flex-wrap: wrap;
-    width:75%;
+    width:85%;
     min-width:800px;
     max-width: 1000px;
     gap: 15px;
 }
 
-header{
-    background-color: rgba(255,255,255,0.5);
-}
-
 header, section{
+    background-color: rgba(2,7,93,0.7);
+    border: 4px solid #d4a200;
+    color:#ffffff;
+    box-shadow: 0px 10px 15px grey;
     display:flex;
     flex-direction:column;
-    /* justify-content: flex-start; */
     text-align: center;
-    min-width:51%;
-    max-width:60%;
-    border:1px solid blue;
+    width:60%;
+    margin:5px;
+}
+
+header{
+    border-radius: 175px;
+    align-content: center;
+    padding:3px;
+}
+
+h1{
+    margin: 15px 0 0 0;
+    padding-bottom: 5px;
+    border-bottom:2px solid #d4a200;
+}
+
+h2 {
+    border-bottom:2px solid #d4a200;
+    width:100%;
+    margin: 10px 0 0 0;
+    padding-bottom: 3px
+}
+
+h4{
+    margin: 5px 0 10px 0;
+    font-style:italic;
+}
+
+section {
+    /* border: 1px solid white;
+    background: lime;
+    border:1px solid blue; */
 }
 
 #gameBoard{
     min-width:75%;
     max-width: 100%;
-    max-height: 400px;
+    min-height: 250px;
+    max-height: 500px;
     display: flex;
     flex-wrap: wrap;
-    align-content: space-around;
+    align-content: center;
     align-items: space-between;
+    justify-content: center;
 }
 
-div {
-    border: 1px solid white;
-    background: lime;
+.boardContainer{
+    display: flex;
+    flex-direction:row;
+    min-height: 80%;
+    max-height: 80%;
+    border: 1px solid blue;
 }
 
 .gameBoardCol{
     display:flex;
     flex-direction: column;
-    min-height: 90%;
-    width: 12%;
+    width: 12.5%;
     align-content: stretch;
+    align-items: space-around;
+    border: 1px solid blue;
 }
 
 .well, .store, .btnContainer{
     display:flex;
+    flex-direction: row;
     align-items: center;
 }
 
 .store{
-    flex-grow:5;
-    flex-shrink:5;
+    flex-grow:7;
+    flex-shrink:7;
 }
 
 .well{
-    flex-grow:2;
-    flex-shrink:2;
+    flex-grow:3;
+    flex-shrink:3;
 }
 
 .btnContainer{
     flex-grow:1;
     flex-shrink:1;
-}
-
-h1, h4, h2{
-    margin: 9px;
 }
 

@@ -142,6 +142,7 @@ ul li::marker, ol li::marker{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items:center;
 }
 
 #gameStartBtn{
@@ -195,18 +196,51 @@ ul li::marker, ol li::marker{
 }
 
 .store{
-    flex-grow:11;
-    flex-shrink:8;
+    flex:11;
 }
 
 .well{
-    flex-grow:5;
-    flex-shrink:3;
+    flex:4;
 }
 
 .btnContainer{
-    flex-grow:1;
-    flex-shrink:1;
-    border: 1px solid blue;
+    flex:2;
 }
 
+img.pieces{
+    width: 30%;
+}
+
+.plyBtn{
+    font-size: 50px;
+}
+
+/*
+
+ICONS FOR BUTTONS
+
+*/
+
+#gameStartBtn {
+    background-color: transparent;
+    background-image: url('https://i.imgur.com/p76GLrO.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 65px;
+    height: 65px;
+    border: none;
+}
+
+.noone{
+    background-color: transparent;
+    background-image: url('https://i.imgur.com/1NQnsAT.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 70px;
+    height: 70px;
+    border: none;
+}
+
+.playerA{
+    
+}

@@ -27,7 +27,8 @@ ASK IF FLEX BOX CAN START IN THE CENTER AND DO THE COUNTER CLOCKWISE MOTION
 
 body{
     font-family: Noto Sans, sans-serif;
-    font-size:15px;
+    font-weight: 200;
+    font-size: 15px;
     background-image: url('https://i.imgur.com/rW6G1l0.jpeg');
     display:flex;
     justify-content: center;
@@ -89,7 +90,7 @@ h4{
 }
 
 #howToDeetsContainer{
-    padding:12px 10px;
+    padding:15px 30px;
 }
 
 #stepByStep {
@@ -113,24 +114,59 @@ ul li::marker, ol li::marker{
     color:#d4a200;
 }
 
+#infoBoard{
+    border-radius: 35px;
+}
+
+#infoDeetsContainer{
+    margin: 0 30px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height:265px;
+}
+
+#genInfo{
+    align-self:flex-start;
+}
+
+#gameplayMsg{
+    background-image: url('https://i.imgur.com/7rGRHQA.jpeg');
+    opacity: 0.8;
+    color:black;
+    font-weight: 500;
+    padding-top:5px;
+    border: 5px inset rgba(101, 101, 101, 0.75);
+    border-radius: 10px 35px;
+    min-height:125px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#gameStartBtn{
+    margin: 12px 0;
+}
+
 #gameBoard{
+    background-color: rgba(2,7,93,0.7);
     min-width:75%;
     max-width: 100%;
-    min-height: 300px;
-    max-height: 525px;
+    min-height: 400px;
+    max-height: 600px;
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    align-content: center;
-    align-items: space-between;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .boardContainer{
     display: flex;
     flex-direction:row;
-    min-height: 80%;
-    max-height: 80%;
-    border: 1px solid blue;
+    background-image: url('https://i.imgur.com/7rGRHQA.jpeg');
+    align-content: space-between;
+    padding: 25px 10px;
+    height: 355px;
 }
 
 .gameBoardCol{
@@ -138,28 +174,39 @@ ul li::marker, ol li::marker{
     flex-direction: column;
     width: 12.5%;
     align-content: stretch;
-    align-items: space-around;
-    border: 1px solid blue;
+    align-items: space-between;
 }
 
 .well, .store, .btnContainer{
     display:flex;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
 }
 
+.store, .well{
+    background-color: rgba(52, 52, 52, 0.239);
+    background-image: url('https://i.imgur.com/YciJ1OZ.jpeg');
+    background-image: url('https://i.imgur.com/wnTuT0K.jpeg');
+    background-position: center;
+    margin: 5px;
+    border-radius: 25px;
+    /* border: 15px ridged rgba(255, 255, 255, 0.9); */
+    box-shadow: 0px 7px 6px grey;
+}
+
 .store{
-    flex-grow:7;
-    flex-shrink:7;
+    flex-grow:11;
+    flex-shrink:8;
 }
 
 .well{
-    flex-grow:3;
+    flex-grow:5;
     flex-shrink:3;
 }
 
 .btnContainer{
     flex-grow:1;
     flex-shrink:1;
+    border: 1px solid blue;
 }
 

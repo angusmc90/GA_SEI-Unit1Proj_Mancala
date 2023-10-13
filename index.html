@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Merienda:wght@800&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Sans:ital,wght@0,200;0,800;1,200;1,800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Merienda:wght@800&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Sans:ital,wght@0,200;0,500;0,800;1,200;1,500;1,800&display=swap');
       </style>
     <link rel="stylesheet" href="css/style.css"/>
     <script defer src="js/app.js"></script>
@@ -41,11 +41,13 @@
         <section id="infoBoard">
             <h2>Information Board</h2>
             <div id="infoDeetsContainer">
-                Here is where you will find information about who's turn it is, any actions you need to take, or if there are any errors!<br>Please see the area below on how to proceeed:
+                <div id="genInfo">
+                    Here is where you will find information about who's turn it is, any actions you need to take, or if there are any errors!<br><br>Please see the area below on how to proceeed:
+                </div>
                 <div id="gameplayMsg">
-                    To begin play, we need to pick who will go first. In order to do that, we will flip a coin!<br>
-                    If the coin lands on heads, the computer will go first!<br>
-                    If it lands on tails, you get to make the first move!<br>
+                    <div>To begin play, we need to flip a coin to decide who goes first!<br>
+                    If the coin lands on <strong>HEADS</strong>, the <strong>COMPUTER</strong> will go first!<br>
+                    If it lands on <strong>TAILS</strong>, you, <strong>PLAYER A</strong>, get to make the first move!</div>
                     <button class="restartGame" id="gameStartBtn">Click me to flip the coin!</button>
                 </div>
             </div>

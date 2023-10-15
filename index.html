@@ -8,117 +8,85 @@
         @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Merienda:wght@800&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Sans:ital,wght@0,200;0,500;0,800;1,200;1,500;1,800&display=swap');
       </style>
     <link rel="stylesheet" href="css/style.css"/>
-    <script defer src="js/app.js"></script>
+    <!-- <script defer src="js/app.js"></script> -->
 </head>
 <body>
-    <div class="imgOb" id="topOb"><img id="ob1" class="shimmer" src="https://i.imgur.com/3j5YqJG.png"></div>
-    <div class="container" id='topContainerDiv'>
-        <header>
-            <h1><img id="cat1" src="https://i.imgur.com/fVtLWLt.png">MANCALA<img id="cat2" src="https://i.imgur.com/fVtLWLt.png"></h1>
-            <h4>by Angus McCann</h4>
-        </header>
-        <section id="howTo">
-            <h2>How To Play</h2>
-            <div id="howToDeetsContainer">
-                If you don't know how to play Mancala, you can click the ankh to learn more!<br>
-                <div id="stepByStep" class="hide">
-                    <h4 class="subHead">Game Play:</h4>
-                    <ol>
-                        <li>Place four stones into each of the pits.</li>
-                        <li>The starting player grabs all the stones from one hole on their side and drops them, one by one, into each pit around the board going in a counter-clockwise direction. If the player passes over one of the mancala stores or bowls, he or she would place a stone in there, too. Once the player doesn't have any more stones in hand, it's the other person's turn to do the same thing.</li>
-                        <li>If a player has enough stones to hit their own store, they place a stone in it. If it's the player's last stone, they get a free turn to go again. If you pass over another player's store during your turn, you do not place a stone in their pit.</li>
-                        <li>The game ends when one player has emptied the six holes of stones on their side. The other player then takes all the stones on their own side and places them into their store (or bowl).</li>
-                        <li>The winner of the game is the player with the most stones in their mancala store.</li>
-                    </ol>
-                    <h4 class="subHead">Tips:</h4>
-                    <ul>
-                        <li><strong>Get a free turn:</strong> When dropping stones into holes, you can drop one into your own mancala store (bowl). If it's your last stone in your hand, you get another turn.</li>
-                        <li><strong>Gather more stones:</strong> One way to amass more stones is by strategically dropping your last stone into an empty hole on your side of the board. If you manage that, you're allowed to reach across the board and take your opponent's stones that are in the opposite hole.</li>
-                        <li><strong>Think strategically:</strong> If you go first, pick up the stones in the fourth hole away from your mancala store (bowl). That way, you'll place the last stone in your store, and you'll get a free turn.</li>
-                    </ul>
-                </div>
-                <button id="ankhOpenDiv"></button>
-            </div>
-        </section>
-        <section id="infoBoard">
-            <h2>Information Board</h2>
-            <div id="infoDeetsContainer">
-                <div id="genInfo">
-                    Here is where you will find information about who's turn it is, any actions you need to take, or if there are any errors!<br><br>Please see the area below on how to proceeed:
-                </div>
-                <div id="gameplayMsg">
-                    <div>To begin play, we need to flip a coin to decide who goes first!<br>
-                    If the coin lands on <strong>HORUS</strong> (eye facing left), the <strong>PHAROH</strong> will go first!<br>
-                    If it lands on <strong>RA</strong> (eye facing right), you, <strong>PLAYER</strong>, get to make the first move!</div>
-                    <button class="restartGame shimmer" id="gameStartBtn">&nbsp;</button>
-                    <span class="instructMsg">Click on the coin to flip!</span>
-                </div>
-            </div>
-        </section>
-        <section id="gameBoard">
-            <h2>The Game Board</h2>
-            <div class="boardContainer">
-                <div class="gameBoardCol">
-                    <div class="pB store" id="well10"><span class="seedCount"></span></div>
-                </div>
-                <div class="gameBoardCol">
-                    <!-- <img src="https://i.imgur.com/5HaX72N.png" class="pieces"> -->
-                    <div class="pB well" id="well11"><span class="seedCount"></span></div>
-                    <div class="btnContainer"><button class="playBtn noone" playerA="well9" playerB="well11">&nbsp;</button></div>
-                    <div class="pA well" id="well9"><span class="seedCount"></span></div>
-                </div>
-                <div class="gameBoardCol">
-                    <div class="pB well" id="well12"><span class="seedCount"></span></div>
-                    <div class="btnContainer"><button class="playBtn noone" playerA="well8" playerB="well12">&nbsp;</button></div>
-                    <div class="pA well" id="well8"><span class="seedCount"></span></div>
-                </div>
-                <div class="gameBoardCol">
-                    <div class="pB well" id="well13"><span class="seedCount"></span></div>
-                    <div class="btnContainer"><button class="playBtn noone" playerA="well7" playerB="well13">&nbsp;</button></div>
-                    <div class="pA well" id="well7"><span class="seedCount"></span></div>
-                </div>
-                <div class="gameBoardCol">
-                    <div class="pB well" id="well0"><span class="seedCount"></span></div>
-                    <div class="btnContainer"><button class="playBtn noone" playerA="well6" playerB="well0">&nbsp;</button></div>
-                    <div class="pA well" id="well6"><span class="seedCount"></span></div>
-                </div>
-                <div class="gameBoardCol">
-                    <div class="pB well" id="well1"><span class="seedCount"></span></div>
-                    <div class="btnContainer"><button class="playBtn noone" playerA="well5" playerB="well1">&nbsp;</button></div>
-                    <div class="pA well" id="well5"><span class="seedCount"></span></div>
-                </div>
-                <div class="gameBoardCol">
-                    <div class="pB well" id="well2"><span class="seedCount"></span></div>
-                    <div class="btnContainer"><button class="playBtn noone" playerA="well4" playerB="well2">&nbsp;</button></div>
-                    <div class="pA well" id="well4"><span class="seedCount"></span></div>
-                </div>
-                <div class="gameBoardCol">
-                    <div class="pA store" id="well3"><span class="seedCount"></span></div>
-                </div>
-            </div>
-        </section>
-<!--ABOUT-->
-        <section id="about">
-            About section
-        </section>
+    <div class="left pillar container forImg obelisks">
+        <img src="#" notes="forImg to appear as certain screen width with the name of the img - obelisk/heiroglyphs are the class that will show depending on screen size">
     </div>
-    <div class="imgOb" id="btmOb"><img id="ob2" class="shimmer" src="https://i.imgur.com/3j5YqJG.png"></div>
+    <div class="main container forContent">
+        <header><!--use pesuo classes for decorative header images-->
+            <h1>Mancala_v2</h1>
+            <h3>by Angus McCann</h3>        
+        </header>
+        <section>
+            <div class="left pillar container forImg hieroglyphs">
+                <img src="#">
+            </div>
+            <section class="main container forContent">
+                <div id="howTo">
+                    <h2>How to Plag</h2>
+                    <div class="notSlab">If you don't know how to play Mancala, you can read all bout the instructions here, just click below</div>
+                    <div class="unroll">click here to unroll</div>
+                    <div class="txtSlab">
+                        <div class="rollup">click here to roll up</div>
+                    </div>
+                </div>
+                <div id="gameInfo">
+                    <h2></h2>
+                    <div class="notSlab"></div>
+                    <div class="txtSlab"></div>
+                </div>
+            </section>
+            <div class="right pillar container forImg hieroglyphs">
+                <img src="#">
+            </div>
+        </section>
+        <gameboard>
+            <h2></h2>
+            <div class="landscape">
+                <div class="storesContainer landscape">
+                    <well id="pos3" owner="playerB" class="store"></well>
+                </div>
+                <div id="playAreas" class=" landscape">
+                    <div class="wellsContainer">
+                        <well id="pos2" owner="playerB" class="well"></well>
+                        <well id="pos1" owner="playerB" class="well"></well>
+                        <well id="pos0" owner="playerB" class="well"></well>
+                        <well id="pos13" owner="playerB" class="well"></well>
+                        <well id="pos12" owner="playerB" class="well"></well>
+                        <well id="pos11" owner="playerB" class="well"></well>
+                    </div>
+                    <div id="btnsContainter landscape">
+                        <button id="onePlayerMode" class="hide"></button>
+                        <button id="btn1" class="show" playerA="pos4" playerB="pos2"></button>
+                        <button id="btn2" class="show" playerA="pos5" playerB="pos1"></button>
+                        <button id="btn3" class="show" playerA="pos6" playerB="pos0"></button>
+                        <button id="btn4" class="show" playerA="pos7" playerB="pos13"></button>
+                        <button id="btn5" class="show" playerA="pos8" playerB="pos12"></button>
+                        <button id="btn6" class="show" playerA="pos9" playerB="pos11"></button>                    
+                    </div>
+                    <div class="wellsContainer landscape">
+                        <well id="pos4" owner="playerA" class="well"></well>
+                        <well id="pos5" owner="playerA" class="well"></well>
+                        <well id="pos6" owner="playerA" class="well"></well>
+                        <well id="pos7" owner="playerA" class="well"></well>
+                        <well id="pos8" owner="playerA" class="well"></well>
+                        <well id="pos9" owner="playerA" class="well"></well>
+                    </div>
+                </div>
+                <div class="storesContainer landscape">
+                    <well id="pos10" owner="playerA" class="store"></well>
+                </div>
+            </div>
+        </gameboard>
+        <footer>
+            <h4></h4>
+            <div></div>
+        </footer>
+    </div>
+    <div class="right pillar container forImg obelisks">
+        <img src="#" notes="to appear as certain screen width">
+    </div>
 </body>
 </html>
-
-
-            <!--
-            dont forget to add a note for the presentation re: key decisions
-            
-            ===key decision 1: well identification ==========
-            class to note details like pA vs pB, well vs store, etc
-            id to note position to make it easier to note when 
-            
-
-            ===key decision 2: user vs computer =========
-            computer = "playerB"
-            user = "playerA"
-            to eventually add 2-player version, no "computer"
-            using numbers could get confusing in the math fns
-        
-            -->

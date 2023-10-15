@@ -1,0 +1,77 @@
+    <div class="left pillar container forImg obelisks">
+        <img src="#" notes="forImg to appear as certain screen width with the name of the img - obelisk/heiroglyphs are the class that will show depending on screen size">
+    </div>
+    <div class="main container forContent">
+        <header><!--use pesuo classes for decorative header images-->
+            <h1>Mancala</h1>
+            <h3>by Angus McCann</h3>        
+        </header>
+        <section>
+            <div class="left pillar container forImg hieroglyphs">
+                <img src="#">
+            </div>
+            <section class="main container forContent">
+                <div id="howTo">
+                    <h2>How to Plag</h2>
+                    <div class="notSlab">If you don't know how to play Mancala, you can read all bout the instructions here, just click below</div>
+                    <div class="unroll">click here to unroll</div>
+                    <div class="txtSlab">
+                        <div class="rollup">click here to roll up</div>
+                    </div>
+                </div>
+                <div id="gameInfo">
+                    <h2></h2>
+                    <div class="notSlab"></div>
+                    <div class="txtSlab"></div>
+                </div>
+            </section>
+            <div class="right pillar container forImg hieroglyphs">
+                <img src="#">
+            </div>
+        </section>
+        <gameboard>
+            <h2></h2>
+            <div class="landscape">
+                <div class="storesContainer landscape">
+                    <well id="pos3" owner="playerB" class="store"></well>
+                </div>
+                <div id="playAreas" class=" landscape">
+                    <div class="wellsContainer">
+                        <well id="pos2" owner="playerB" class="well"></well>
+                        <well id="pos1" owner="playerB" class="well"></well>
+                        <well id="pos0" owner="playerB" class="well"></well>
+                        <well id="pos13" owner="playerB" class="well"></well>
+                        <well id="pos12" owner="playerB" class="well"></well>
+                        <well id="pos11" owner="playerB" class="well"></well>
+                    </div>
+                    <div id="btnsContainter landscape">
+                        <button id="onePlayerMode" class="hide"></button>
+                        <button id="btn1" class="show" playerA="pos4" playerB="pos2"></button>
+                        <button id="btn2" class="show" playerA="pos5" playerB="pos1"></button>
+                        <button id="btn3" class="show" playerA="pos6" playerB="pos0"></button>
+                        <button id="btn4" class="show" playerA="pos7" playerB="pos13"></button>
+                        <button id="btn5" class="show" playerA="pos8" playerB="pos12"></button>
+                        <button id="btn6" class="show" playerA="pos9" playerB="pos11"></button>                    
+                    </div>
+                    <div class="wellsContainer landscape">
+                        <well id="pos4" owner="playerA" class="well"></well>
+                        <well id="pos5" owner="playerA" class="well"></well>
+                        <well id="pos6" owner="playerA" class="well"></well>
+                        <well id="pos7" owner="playerA" class="well"></well>
+                        <well id="pos8" owner="playerA" class="well"></well>
+                        <well id="pos9" owner="playerA" class="well"></well>
+                    </div>
+                </div>
+                <div class="storesContainer landscape">
+                    <well id="pos10" owner="playerA" class="store"></well>
+                </div>
+            </div>
+        </gameboard>
+        <footer>
+            <h4></h4>
+            <div></div>
+        </footer>
+    </div>
+    <div class="right pillar container forImg obelisks">
+        <img src="#" notes="to appear as certain screen width">
+    </div>

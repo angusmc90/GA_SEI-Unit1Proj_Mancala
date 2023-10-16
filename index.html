@@ -25,17 +25,42 @@
             </div>
             <section class="main container forContent">
                 <div id="howTo">
-                    <h2>How to Plag</h2>
+                    <h2>How to Play</h2>
                     <div class="notSlab">If you don't know how to play Mancala, you can read all bout the instructions here, just click below</div>
-                    <div class="unroll">click here to unroll</div>
-                    <div class="txtSlab">
-                        <div class="rollup">click here to roll up</div>
+                    <div class="showBtn">Read More</div><!--this button will change, the bottom button wont-->
+                    <div class="showHideDiv hide">
+                        <div class="txtSlab">
+                            <h4 class="subhead">Game Play:</h4>
+                            <ol>
+                                <li>Place four stones into each of the pits.</li>
+                                <li>The starting player grabs all the stones from one hole on their side and drops them, one by one, into each pit around the board going in a counter-clockwise direction. If the player passes over one of the mancala stores or bowls, he or she would place a stone in there, too. Once the player doesn't have any more stones in hand, it's the other person's turn to do the same thing.</li>
+                                <li>If a player has enough stones to hit their own store, they place a stone in it. If it's the player's last stone, they get a free turn to go again. If you pass over another player's store during your turn, you do not place a stone in their pit.</li>
+                                <li id="featureTBD">Caputring your opponents stones is a TBD feature</li>
+                                <li>The game ends when one player has emptied the six holes of stones on their side. The other player then takes all the stones on their own side and places them into their store (or bowl).</li>
+                                <li>The winner of the game is the player with the most stones in their mancala store.</li>
+                            </ol>
+                            <h4 class="subhead">Tips:</h4>
+                            <ul>
+                                <li>Get a free turn: When dropping stones into holes, you can drop one into your own mancala store (bowl). If it's your last stone in your hand, you get another turn.</li>
+                                <li>Gather more stones: One way to amass more stones is by strategically dropping your last stone into an empty hole on your side of the board. If you manage that, you're allowed to reach across the board and take your opponent's stones that are in the opposite hole.</li>
+                                <li>Think strategically: If you go first, pick up the stones in the fourth hole away from your mancala store (bowl). That way, you'll place the last stone in your store, and you'll get a free turn.</li>
+                            </ul>
+                        </div>
+                        <div class="hideBtn">Hide</div>
                     </div>
                 </div>
                 <div id="gameInfo">
-                    <h2></h2>
-                    <div class="notSlab"></div>
-                    <div class="txtSlab"></div>
+                    <h2>Story Board</h2>
+                    <div class="notSlab">
+                        You are the world renown archieologist, [PAW-fessor Henry Walton Jones, Jr]. On your latest expedition visiting the lost tomb of [Pharoh TutanCATmun], you triggered a booby trap that awakened them from their slumber and are angry you disturbed their slumber. You are being challenged to a game of Manacala by the Pharoh, who will only let you leave if you win. During their time among the living, TutanCATmun was known for being naturally cunning and equally as viscious, so be sure to keep your wits about you as you play for your life!<br>
+                        <br>
+                        The space below is where you will find information about who's turn it is, any actions you need to take, or if there are any errors, so keep an eye below as your play through the Pharoh's sinsister game!!
+                    </div>
+                    <div class="txtSlab">
+                        To start the game, you will need to decide who goes first with a coing flip!<br>
+                        If the coin lands on THE EYE OF RA (the right wadjet: <span id="rightEye">𓂀</span>), the PHAROH will go first!
+                        If it lands on THE EYE OF HORUS (the left wadjet: <span id="leftEye">𓂀</span>), you, [PLAYER], get to make the first move!
+                    </div>
                 </div>
             </section>
             <div class="right pillar container forImg hieroglyphs">
@@ -43,7 +68,7 @@
             </div>
         </section>
         <gameboard>
-            <h2></h2>
+            <h2>Gameboard</h2>
             <div class="landscape">
                 <div class="storesContainer landscape">
                     <well id="pos3" owner="playerB" class="store"></well>
@@ -81,8 +106,13 @@
             </div>
         </gameboard>
         <footer>
-            <h4></h4>
-            <div></div>
+            <h4>About This Game</h4>
+            <div>
+                -by Angus link to portfolio<br>
+                -lorem ipsum<br>
+                -about the history of mancala<br>
+                -github README link<br>
+            </div>
         </footer>
     </div>
     <div class="right pillar container forImg obelisks">
